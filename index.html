@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Olga & Sascha · Nuestra boda</title>
+<style>
+:root {
+ --site-primary:#6B7460;
+ --site-on-primary:#FFFFFF;
+ --site-secondary:#E8E4DA;
+ --site-on-secondary:#34372F;
+ --site-background:#F7F5F0;
+ --site-on-background:#30332D;
+ --site-font-body: Georgia, 'Times New Roman', serif;
+ --site-font-heading: 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+ --site-heading-scale:1;
+ --site-spacing-scale:1;
+ --site-radius-scale:1;
+ --site-decoration-opacity:1;
+ --muted:#77796F;
+ --line:#DAD8CF;
+ --paper:#FFFEFA;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--site-background);color:var(--site-on-background);font-family:var(--site-font-body);background-image:radial-gradient(ellipse at 12% 18%,rgba(107,116,96,.055),transparent 35%),radial-gradient(ellipse at 88% 70%,rgba(155,142,115,.07),transparent 32%);background-attachment:fixed}
+#app{min-height:100vh;width:100%;background-color:transparent;border-radius:0;overflow:hidden;}
+.hero{min-height:660px;display:grid;place-items:center;text-align:center;padding:70px 24px;position:relative;background:var(--site-primary);color:var(--site-on-primary);}
+.hero:before,.hero:after{content:"✈";position:absolute;color:#D9D5C8;opacity:calc(.3 * var(--site-decoration-opacity));font-size:110px;font-weight:normal;pointer-events:none}
+.hero:before{top:25px;left:5%;transform:rotate(-18deg)}.hero:after{bottom:10px;right:5%;transform:rotate(20deg)}
+.hero-inner{max-width:700px;position:relative;z-index:1}
+.eyebrow{font:11px Arial,sans-serif;letter-spacing:4px;text-transform:uppercase;opacity:.85}
+h1{font-family:var(--site-font-heading);font-size:clamp(54px,10vw,94px);font-weight:400;line-height:.98;margin:34px 0 24px;letter-spacing:-3px}
+.amp{font-style:italic;color:#E7DDC8;font-size:.78em}
+.hero-rule{width:58px;height:1px;background:#D8D1C1;margin:30px auto}
+.hero-date{font-size:20px;letter-spacing:1.5px}.hero-place{font:11px Arial,sans-serif;letter-spacing:4px;text-transform:uppercase;margin-top:14px;opacity:.8}
+main{max-width:920px;margin:0 auto;padding:0 24px 90px;position:relative;isolation:isolate}
+main:before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:50%;transform:translateX(-50%);width:min(220px,34vw);opacity:.19;background-image:linear-gradient(90deg,transparent 0 10%,#85877D 10% 12%,#85877D 88% 90%,transparent 90%),repeating-linear-gradient(180deg,transparent 0 34px,#FFFDF7 34px 60px,transparent 60px 94px);background-size:100% 100%,4px 100%;background-position:center;background-repeat:no-repeat;border-left:1px solid rgba(107,116,96,.15);border-right:1px solid rgba(107,116,96,.15);pointer-events:none}
+.intro{text-align:center;padding:78px 12px 58px;position:relative}.intro:before{content:"✈";position:absolute;left:8%;top:38px;font:42px Arial,sans-serif;color:var(--site-primary);opacity:.32;transform:rotate(-18deg)}.intro:after{content:"✈";position:absolute;right:7%;bottom:20px;font:30px Arial,sans-serif;color:#9B8E73;opacity:.38;transform:rotate(12deg)}.intro h2,.form-head h2{font-family:var(--site-font-heading);font-size:calc(36px * var(--site-heading-scale));font-weight:400;margin:0 0 16px}.intro p{font-size:18px;line-height:1.8;color:var(--muted);max-width:590px;margin:0 auto}
+.details{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:0 0 75px;position:relative}.details:after{content:"PASAPORTE  ✦  ESPAÑA";position:absolute;right:-34px;bottom:-42px;padding:12px 16px;border:1px solid #9B8E73;border-radius:5px;color:#796D57;background:#F4F0E6;font:9px Arial,sans-serif;letter-spacing:2px;transform:rotate(7deg);opacity:.82;box-shadow:0 3px 10px rgba(35,35,25,.06)}.detail{background:var(--paper);text-align:center;padding:28px 14px}.detail .label{font:10px Arial,sans-serif;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted)}.detail strong{display:block;font-size:18px;font-weight:400;margin-top:12px}
+.form-wrap{background:var(--paper);border:1px solid var(--line);padding:clamp(24px,6vw,58px);max-width:720px;margin:0 auto;box-shadow:0 16px 50px rgba(35,35,25,.045)}
+.form-head{text-align:center;margin-bottom:35px}.form-head p{color:var(--muted);font-size:15px;line-height:1.7;margin:10px auto 0;max-width:470px}
+form{display:grid;gap:22px}.field{display:grid;gap:9px}.field label,.group-label{font:11px Arial,sans-serif;letter-spacing:1.6px;text-transform:uppercase;color:#65685F}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#fffefa;padding:14px 13px;font:16px var(--site-font-body);color:var(--site-on-background);border-radius:2px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--site-primary);box-shadow:0 0 0 2px rgba(107,116,96,.12)}
+.choices{display:flex;gap:12px;flex-wrap:wrap}.choice{display:flex;align-items:center;gap:9px;border:1px solid var(--line);padding:12px 15px;flex:1;min-width:170px;font-size:15px;cursor:pointer}.choice input{accent-color:var(--site-primary)}.hint{font-size:12px;color:var(--muted);line-height:1.5}.conditional{display:none;padding:18px;background:#F7F5F0;border-left:2px solid var(--site-primary);gap:18px}.conditional.show{display:grid}.submit{border:0;background:var(--site-primary);color:var(--site-on-primary);padding:17px 24px;font:11px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:4px;transition:opacity .2s}.submit:hover{opacity:.88}.success{display:none;text-align:center;padding:24px 8px}.success h3{font:34px var(--site-font-heading);font-weight:400}.success p{color:var(--muted);line-height:1.7}.footer{text-align:center;padding:60px 20px 0;color:var(--muted);font-size:14px}.footer .names{font:34px var(--site-font-heading);color:var(--site-primary);margin-bottom:12px}
+@media(max-width:620px){.hero{min-height:570px}.hero:before,.hero:after{font-size:100px}.details{grid-template-columns:1fr}.details:after{right:4px;bottom:-38px}.detail{padding:22px}.intro{padding:58px 5px 42px}.intro:before{left:2%;top:14px;font-size:30px}.choice{min-width:100%}}
+</style>
+</head>
+<body>
+<div id="app">
+<section class="hero"><div class="hero-inner"><div class="eyebrow">Tenemos algo que celebrar</div><h1>Olga <span class="amp">&</span><br>Sascha</h1><div class="hero-rule"></div><div class="hero-date">3 · 10 · 2027</div><div class="hero-place">Málaga · España</div></div></section>
+<main>
+<section class="intro"><h2>¡Nos casamos!</h2><p>Nos haría muchísima ilusión compartir contigo un día tan especial. Queremos que nos acompañes y, para ayudarnos a organizarlo todo, te agradeceríamos que rellenaras este pequeño formulario.</p></section>
+<section class="details" aria-label="Detalles de la boda"><div class="detail"><div class="label">Fecha</div><strong>Domingo, 3 de octubre de 2027</strong></div><div class="detail"><div class="label">Hora</div><strong>12:00 h</strong></div><div class="detail"><div class="label">Lugar</div><strong>Málaga</strong></div></section>
+<section class="form-wrap"><div class="form-head"><h2>Check-in para el vuelo</h2><p>Nos ayudaría mucho saber si podrás acompañarnos. Selecciona la opción que mejor se adapte a tu situación.</p></div>
+<form id="rsvp">
+<div class="field"><label for="name">Nombre y apellidos</label><input id="name" name="name" required placeholder="Tu nombre completo"></div>
+<div class="field"><span class="group-label">Check-in para el vuelo</span><div class="choices"><label class="choice"><input type="radio" name="attendance" value="Confirmo asistencia" required> Confirmo asistencia</label><label class="choice"><input type="radio" name="attendance" value="Dudoso"> Dudoso</label><label class="choice"><input type="radio" name="attendance" value="No podré asistir"> No podré asistir</label></div></div>
+<div class="conditional" id="attendingFields">
+<div class="field"><label for="diet">Alergias, intolerancias o necesidades alimentarias</label><textarea id="diet" name="diet" rows="3" placeholder="Indica también si alguien necesita un menú especial"></textarea></div>
+<div class="field"><label for="color">¿Cuál es tu color favorito?</label><input id="color" name="color" placeholder="Tu color favorito"></div>
+</div>
+<div class="field"><label for="message">¿Quieres dejarnos algún comentario? <span class="hint">(Opcional)</span></label><textarea id="message" name="message" rows="3" placeholder="Un mensaje para los novios..."></textarea></div>
+<button class="submit" type="submit">Enviar respuesta</button>
+</form><div class="success" id="success" role="status"><h3>¡Muchas gracias!</h3><p>Tu respuesta se ha preparado correctamente en esta demostración.<br>En la versión publicada, las respuestas quedarán guardadas para que podamos organizarnos.</p></div>
+</section>
+<footer class="footer"><div class="names">Olga & Sascha</div><div>Estamos deseando celebrarlo contigo</div></footer>
+</main></div>
+<script>
+const radios=document.querySelectorAll('input[name="attendance"]');
+const conditional=document.getElementById('attendingFields');
+radios.forEach(r=>r.addEventListener('change',()=>{const yes=document.querySelector('input[name="attendance"]:checked')?.value==='Confirmo asistencia';conditional.classList.toggle('show',yes);}));
+document.getElementById('rsvp').addEventListener('submit',e=>{e.preventDefault();if(!e.target.reportValidity())return;const data=Object.fromEntries(new FormData(e.target).entries());e.target.style.display='none';const s=document.getElementById('success');s.style.display='block';const messages={'Confirmo asistencia':'¡Qué alegría saber que nos acompañarás! Gracias por ayudarnos con la organización.','Dudoso':'¡Gracias por avisarnos! Cuando lo tengas claro, puedes volver a actualizar tu respuesta.','No podré asistir':'Muchas gracias por avisarnos. Sentimos que no puedas acompañarnos y esperamos verte pronto.'};s.querySelector('p').textContent=messages[data.attendance];});
+</script>
+</body></html>
