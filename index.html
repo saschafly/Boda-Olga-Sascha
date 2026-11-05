@@ -376,6 +376,35 @@ main:before{display:none}
   .stamp-love{right:-12px!important}
 }
 
+/* Perímetro del boarding pass: mismo ancho y esquinas que el bloque de detalles,
+   sin borde ni lienzo blanco visible alrededor. */
+.boarding-pass-image-wrap{
+  max-width:920px!important;
+  width:100%!important;
+  aspect-ratio:3.455!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:12px!important;
+  background:transparent!important;
+  box-shadow:0 10px 30px rgba(39,62,82,.12)!important;
+}
+.boarding-pass-image-wrap img{
+  width:105.25%!important;
+  left:-2.63%!important;
+  top:-30.1%!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  filter:none!important;
+}
+@media(max-width:620px){
+  .boarding-pass-image-wrap{
+    max-width:100%!important;
+    width:100%!important;
+    border-radius:12px!important;
+  }
+}
+
 </style>
 </head>
 <body>
