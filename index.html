@@ -149,6 +149,35 @@ main:before{display:none}
  .passenger-form-wrap .ticket-form-label:first-child{font-size:21px;padding:22px 0 0}
 }
 
+
+/* Boarding pass integrado en el fondo, con efecto de tarjeta flotante */
+.boarding-pass-image-wrap{
+  max-width:1080px!important;
+  width:100%;
+  margin:12px auto 76px!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  overflow:visible!important;
+  line-height:0;
+}
+.boarding-pass-image-wrap img{
+  display:block;
+  width:100%;
+  height:auto;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  mix-blend-mode:multiply;
+  filter:drop-shadow(0 20px 20px rgba(25,48,69,.28));
+}
+@media(max-width:620px){
+  .boarding-pass-image-wrap{width:calc(100% + 10px);margin:0 -5px 62px!important}
+  .boarding-pass-image-wrap img{filter:drop-shadow(0 12px 13px rgba(25,48,69,.24))}
+}
+
 </style>
 </head>
 <body>
