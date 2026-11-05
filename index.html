@@ -42,7 +42,13 @@ main:before{content:"";position:absolute;z-index:-1;top:0;bottom:0;left:50%;tran
 .details{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin:0 0 75px;position:relative}.detail{background:var(--paper);text-align:center;padding:28px 14px}.detail .label{font:10px Arial,sans-serif;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted)}.detail strong{display:block;font-size:18px;font-weight:400;margin-top:12px}
 .form-wrap{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line);padding:clamp(24px,6vw,58px);max-width:720px;margin:0 auto;box-shadow:0 16px 50px rgba(35,65,85,.12)}
 
-form{display:grid;gap:22px}.field{display:grid;gap:9px}.field label,.group-label{font:11px Arial,sans-serif;letter-spacing:1.6px;text-transform:uppercase;color:#536B7C}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#fff;padding:14px 13px;font:16px var(--site-font-body);color:var(--site-on-background);border-radius:2px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--site-primary);box-shadow:0 0 0 2px rgba(36,79,120,.12)}
+.ticket-main{padding:0 0 28px}
+.ticket-stub{position:relative;margin:0 -1px;padding:27px 0 0;border-top:2px dashed #9aafbd}
+.ticket-stub:before,.ticket-stub:after{content:"";position:absolute;top:-11px;width:20px;height:20px;border-radius:50%;background:#fff}
+.ticket-stub:before{left:-34px}.ticket-stub:after{right:-34px}
+.ticket-form-label{font:10px Arial,sans-serif;letter-spacing:1.8px;text-transform:uppercase;color:#536B7C;margin:0 0 18px}
+@media(max-width:620px){.ticket-stub{padding-top:22px}.ticket-form-label{font-size:9px;letter-spacing:1.3px}}
+form{display:grid;gap:0}.ticket-main{display:grid;gap:22px}.ticket-stub{display:grid;gap:22px}.field{display:grid;gap:9px}.field label,.group-label{font:11px Arial,sans-serif;letter-spacing:1.6px;text-transform:uppercase;color:#536B7C}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);background:#fff;padding:14px 13px;font:16px var(--site-font-body);color:var(--site-on-background);border-radius:2px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--site-primary);box-shadow:0 0 0 2px rgba(36,79,120,.12)}
 .choices{display:flex;gap:12px;flex-wrap:wrap}.choice{display:flex;align-items:center;gap:9px;border:1px solid var(--line);padding:12px 15px;flex:1;min-width:170px;font-size:15px;cursor:pointer}.choice input{accent-color:var(--site-primary)}.hint{font-size:12px;color:var(--muted);line-height:1.5}.conditional{display:none;padding:18px;background:#F0F6FA;border-left:2px solid var(--site-primary);gap:18px}.conditional.show{display:grid}.submit{border:0;background:var(--site-primary);color:var(--site-on-primary);padding:17px 24px;font:11px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:4px;transition:opacity .2s}.submit:hover{opacity:.88}.success{display:none;text-align:center;padding:24px 8px}.success h3{font:34px var(--site-font-heading);font-weight:400}.success p{color:var(--muted);line-height:1.7}.footer{text-align:center;padding:60px 20px 0;color:var(--muted);font-size:14px}.footer .names{font:34px var(--site-font-heading);color:var(--site-primary);margin-bottom:12px}
 @media(max-width:620px){.hero{min-height:570px}.hero:before,.hero:after{font-size:100px}.details{grid-template-columns:1fr}.detail{padding:22px}.intro{padding:58px 5px 42px}.intro:before{left:2%;top:14px;font-size:30px}.choice{min-width:100%}}
 </style>
@@ -55,15 +61,21 @@ form{display:grid;gap:22px}.field{display:grid;gap:9px}.field label,.group-label
 <section class="intro"><h2>¡Nos casamos!</h2><p>Nos haría muchísima ilusión compartir contigo un día tan especial. Queremos que nos acompañes y, para ayudarnos a organizarlo todo, te agradeceríamos que rellenaras este pequeño formulario.</p></section>
 <section class="details" aria-label="Detalles de la boda"><div class="detail"><div class="label">Fecha</div><strong>Domingo, 3 de octubre de 2027</strong></div><div class="detail"><div class="label">Hora</div><strong>12:00 h</strong></div><div class="detail"><div class="label">Lugar</div><strong>Málaga</strong></div></section>
 <section class="form-wrap"><div class="ticket-head"><div><div class="ticket-airline">Olga & Sascha · Celebrations</div><div class="ticket-title">Boarding Pass</div></div><div class="ticket-type">Admit One</div></div><div class="ticket-route"><div class="ticket-city"><small>Destino / Destination</small><strong>MÁLAGA</strong><div class="ticket-data-row"><div class="ticket-data" style="text-align:left"><small>Fecha / Date</small><strong>03 OCT 2027</strong></div></div></div><div class="ticket-plane">✈</div><div class="ticket-city" style="text-align:right"><small>Vuelo / Flight</small><strong>OS · 0310</strong><div class="ticket-data-row" style="justify-content:flex-end"><div class="ticket-data"><small>Embarque / Boarding</small><strong>12:00 H</strong></div></div></div></div>
-<form id="rsvp"><div class="ticket-form-label">Datos del pasajero / Passenger details</div>
+<form id="rsvp">
+<div class="ticket-main">
+<div class="ticket-form-label">Datos del pasajero / Passenger details</div>
 <div class="field"><label for="name">Nombre y apellidos</label><input id="name" name="name" required placeholder="Tu nombre completo"></div>
 <div class="field"><span class="group-label">Check-in para el vuelo</span><div class="choices"><label class="choice"><input type="radio" name="attendance" value="Hacer check in para el vuelo" required> Confirmar hacer check in</label><label class="choice"><input type="radio" name="attendance" value="Dudoso"> Tengo dudas para facturar</label><label class="choice"><input type="radio" name="attendance" value="No podré asistir"> Vuelo cancelado, no asistiré</label></div></div>
+</div>
+<div class="ticket-stub">
+<div class="ticket-form-label">Información adicional / Passenger notes</div>
 <div class="conditional" id="attendingFields">
 <div class="field"><label for="diet">Alergias, intolerancias o necesidades alimentarias</label><textarea id="diet" name="diet" rows="3" placeholder="Indica también si alguien necesita un menú especial"></textarea></div>
 <div class="field"><label for="color">¿Cuál es tu color favorito?</label><input id="color" name="color" placeholder="Tu color favorito"></div>
 </div>
 <div class="field"><label for="message">Coméntanos tus alergias, intolerancias, sugerencias y color favorito <span class="hint">(Opcional)</span></label><textarea id="message" name="message" rows="3" placeholder="Un mensaje para los novios..."></textarea></div>
 <button class="submit" type="submit">Enviar respuesta</button>
+</div>
 </form><div class="barcode" aria-hidden="true"></div><div class="success" id="success" role="status"><h3>¡Muchas gracias!</h3><p>Tu respuesta se ha preparado correctamente en esta demostración.<br>En la versión publicada, las respuestas quedarán guardadas para que podamos organizarnos.</p></div>
 </section>
 <footer class="footer"><div class="names">Olga & Sascha</div><div>Estamos deseando celebrarlo contigo</div></footer>
