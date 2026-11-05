@@ -214,6 +214,12 @@ main:before{display:none}
  .stamp-globe strong{font-size:23px}.stamp-globe span{font-size:5px}
 }
 
+
+/* Separación adicional entre el formulario y la firma final */
+.passenger-form-wrap + .names{margin-top:76px!important}
+.passenger-form-wrap + .names + div{margin-top:10px}
+@media(max-width:620px){.passenger-form-wrap + .names{margin-top:58px!important}}
+
 </style>
 </head>
 <body>
@@ -240,7 +246,7 @@ main:before{display:none}
 <div class="ticket-form-label additional-label">Información adicional / Passenger notes</div>
 <div class="conditional" id="attendingFields">
 <div class="field"><label for="diet">Alergias, intolerancias o necesidades alimentarias</label><textarea id="diet" name="diet" rows="3" placeholder="Indica también si alguien necesita un menú especial"></textarea></div>
-<div class="field"><label for="color">¿Cuál es tu <u>color favorito</u>?</label><input id="color" name="color" placeholder="Tu color favorito"></div>
+
 </div>
 <div class="field"><label for="message">Coméntanos tus alergias, intolerancias, sugerencias y color favorito <span class="hint">(Opcional)</span></label><textarea id="message" name="message" rows="3" placeholder="Un mensaje para los novios..."></textarea></div>
 <button class="submit" type="submit">Enviar respuesta</button>
