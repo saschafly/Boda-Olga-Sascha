@@ -200,9 +200,10 @@ main:before{display:none}
  .stamp-globe{width:70px;height:70px;right:5px;bottom:100px}
  .passenger-form-wrap .ticket-main{padding-left:0;padding-right:0;padding-top:55px;padding-bottom:55px}
 }
-.boarding-pass-image-wrap{max-width:1080px!important;margin:12px auto 76px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;overflow:visible!important;line-height:0}
-.boarding-pass-image-wrap img{display:block;width:100%;height:auto;border:0!important;border-radius:0!important;background:transparent!important;mix-blend-mode:multiply;filter:drop-shadow(0 18px 18px rgba(25,48,69,.3)) contrast(1.06)}
-@media(max-width:620px){.boarding-pass-image-wrap{width:calc(100% + 10px);margin:0 -5px 62px!important}.boarding-pass-image-wrap img{filter:drop-shadow(0 12px 13px rgba(25,48,69,.25)) contrast(1.05)}}
+/* Boarding pass: recorte visual hasta el borde rojo, sin margen blanco exterior */
+.boarding-pass-image-wrap{max-width:1080px!important;width:100%;margin:12px auto 76px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;overflow:hidden!important;line-height:0;border-radius:24px!important}
+.boarding-pass-image-wrap img{display:block;width:112%!important;max-width:none!important;height:auto;border:0!important;border-radius:0!important;background:transparent!important;margin:-5.4% 0 -5.4% -6%!important;clip-path:inset(4.8% 4.8% 4.8% 4.8% round 24px);filter:drop-shadow(0 18px 18px rgba(25,48,69,.3)) contrast(1.04)}
+@media(max-width:620px){.boarding-pass-image-wrap{width:calc(100% + 10px);margin:0 -5px 62px!important;border-radius:16px!important}.boarding-pass-image-wrap img{width:112%!important;margin:-5.4% 0 -5.4% -6%!important;clip-path:inset(4.8% 4.8% 4.8% 4.8% round 16px);filter:drop-shadow(0 12px 13px rgba(25,48,69,.25))}}
 
 </style>
 </head>
