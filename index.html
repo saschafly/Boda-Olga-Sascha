@@ -109,6 +109,12 @@ form{display:grid;gap:0}.ticket-main{display:grid;gap:22px}.ticket-stub{display:
  .bp-red-footer{height:12px}
 }
 
+
+/* Boarding pass: imagen original subida a images */
+.boarding-pass-image-wrap{position:relative;width:100%;max-width:1000px;margin:0 auto 28px;line-height:0}
+.boarding-pass-image-wrap img{display:block;width:100%;height:auto}
+.boarding-pass-class-overlay{position:absolute;left:54.5%;top:34.2%;width:19%;height:8.8%;display:flex;align-items:center;justify-content:flex-start;padding-left:.5%;background:rgba(250,250,248,.97);color:#111;font:700 clamp(9px,1.55vw,19px)/1 Arial,Helvetica,sans-serif;white-space:nowrap}
+@media(max-width:620px){.boarding-pass-image-wrap{margin-bottom:22px}.boarding-pass-class-overlay{font-size:clamp(7px,2.1vw,13px)}}
 </style>
 </head>
 <body>
@@ -118,29 +124,10 @@ form{display:grid;gap:0}.ticket-main{display:grid;gap:22px}.ticket-stub{display:
 <main>
 <section class="intro"><h2>¡Nos casamos!</h2><p>Nos haría muchísima ilusión compartir contigo un día tan especial. Queremos que nos acompañes y, para ayudarnos a organizarlo todo, te agradeceríamos que rellenaras este pequeño formulario.</p></section>
 <section class="details" aria-label="Detalles de la boda"><div class="detail"><div class="label">Fecha</div><strong>Domingo, 03 de octubre de 2027</strong></div><div class="detail"><div class="label">Hora</div><strong>12:00 h</strong></div><div class="detail"><div class="label">Lugar</div><strong>Finca Paloverde Ágape, Alhaurín de la Torre</strong></div></section>
-<section class="form-wrap boarding-pass-card" aria-label="Tarjeta de embarque">
-<div class="bp-red-header"><div class="bp-red-brand"><span class="bp-red-plane">✈</span><span class="bp-red-wordmark">Celebration Air</span></div><div class="bp-red-title">BOARDING PASS</div><div class="bp-red-title">BOARDING PASS</div></div>
-<div class="bp-ticket-body">
-<div class="bp-ticket-barcode" aria-hidden="true"><div class="bp-barcode"></div></div>
-<div class="bp-ticket-info">
-<div class="bp-field passenger"><span>NAME OF PASSENGER</span><strong>&nbsp;</strong></div>
-<div class="bp-field flight"><span>FLIGHT</span><strong>OS 0310</strong></div>
-<div class="bp-field class"><span>CLASS</span><strong>NO REFUNDS</strong></div>
-<div class="bp-ticket-separator"></div>
-<div class="bp-field origin"><span>FROM</span><strong>AGP</strong></div>
-<div class="bp-field destination"><span>TO</span><strong>LOVELAND</strong></div>
-<div class="bp-field date"><span>DATE</span><strong>03 OCT 2027</strong></div>
-<div class="bp-field time"><span>BOARDING</span><strong>12:00 H</strong></div>
-<div class="bp-field seat"><span>SEAT</span><strong>1A</strong></div>
-<div class="bp-field gate"><span>GATE</span><strong>42</strong></div>
-</div>
-<aside class="bp-red-stub">
-<div class="bp-field"><span>NAME OF PASSENGER</span><strong>&nbsp;</strong></div>
-<div class="bp-field"><span>DESTINATION</span><strong>LOVELAND</strong></div>
-<div class="bp-field"><span>SEAT</span><strong>1A</strong></div>
-<div class="bp-field"><span>GATE</span><strong>42</strong></div>
-</aside>
-</div><div class="bp-red-footer"></div></section>
+<section class="boarding-pass-image-wrap" aria-label="Tarjeta de embarque">
+<img src="images/Celebration%20Air%20Boarding%20Pass.png" alt="Boarding pass Celebration Air">
+<span class="boarding-pass-class-overlay">NO REFUNDS</span>
+</section>
 <section class="form-wrap passenger-form-wrap"><form id="rsvp"><div class="ticket-main">
 <div class="ticket-form-label">Datos del pasajero / Passenger details</div>
 <div class="field"><label for="name">Nombre y apellidos</label><input id="name" name="name" required placeholder="Tu nombre completo"></div>
