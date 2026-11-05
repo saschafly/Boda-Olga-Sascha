@@ -200,10 +200,43 @@ main:before{display:none}
  .stamp-globe{width:70px;height:70px;right:5px;bottom:100px}
  .passenger-form-wrap .ticket-main{padding-left:0;padding-right:0;padding-top:55px;padding-bottom:55px}
 }
-/* Boarding pass: recorte visual hasta el borde rojo, sin margen blanco exterior */
-.boarding-pass-image-wrap{max-width:1080px!important;width:100%;margin:12px auto 76px!important;padding:0!important;background:transparent!important;border:0!important;box-shadow:none!important;overflow:hidden!important;line-height:0;border-radius:24px!important}
-.boarding-pass-image-wrap img{display:block;width:112%!important;max-width:none!important;height:auto;border:0!important;border-radius:0!important;background:transparent!important;margin:-5.4% 0 -5.4% -6%!important;clip-path:inset(4.8% 4.8% 4.8% 4.8% round 24px);filter:drop-shadow(0 18px 18px rgba(25,48,69,.3)) contrast(1.04)}
-@media(max-width:620px){.boarding-pass-image-wrap{width:calc(100% + 10px);margin:0 -5px 62px!important;border-radius:16px!important}.boarding-pass-image-wrap img{width:112%!important;margin:-5.4% 0 -5.4% -6%!important;clip-path:inset(4.8% 4.8% 4.8% 4.8% round 16px);filter:drop-shadow(0 12px 13px rgba(25,48,69,.25))}}
+/* Boarding pass: ventana recortada exactamente al contorno rojo del billete */
+.boarding-pass-image-wrap{
+  position:relative!important;
+  width:100%;
+  max-width:1080px!important;
+  aspect-ratio:3.49;
+  margin:12px auto 76px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:18px!important;
+  background:transparent!important;
+  box-shadow:0 18px 22px rgba(25,48,69,.25)!important;
+  line-height:0;
+}
+.boarding-pass-image-wrap img{
+  position:absolute;
+  display:block;
+  width:104.8%!important;
+  max-width:none!important;
+  height:auto!important;
+  left:-2.46%;
+  top:-30%;
+  margin:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  filter:none!important;
+  mix-blend-mode:normal!important;
+}
+@media(max-width:620px){
+  .boarding-pass-image-wrap{
+    width:calc(100% + 10px);
+    margin:0 -5px 62px!important;
+    border-radius:12px!important;
+  }
+}
 
 </style>
 </head>
