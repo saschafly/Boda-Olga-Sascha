@@ -178,6 +178,42 @@ main:before{display:none}
   .boarding-pass-image-wrap img{filter:drop-shadow(0 12px 13px rgba(25,48,69,.24))}
 }
 
+
+/* Cuatro sellos de viaje integrados en la tarjeta del formulario */
+.passenger-form-wrap{position:relative!important;overflow:visible!important}
+.passenger-form-wrap:before,.passenger-form-wrap:after{content:none!important;display:none!important}
+.travel-stamps{position:absolute;inset:0;pointer-events:none;z-index:0;color:rgba(62,111,155,.34);font-family:Arial,Helvetica,sans-serif}
+.travel-stamp{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.15;border:2px solid rgba(74,126,170,.27);color:rgba(57,105,149,.34);font-weight:700;letter-spacing:1.4px}
+.stamp-agp{top:26px;left:-15px;width:160px;height:88px;transform:rotate(-13deg);border-radius:5px;outline:1px dashed rgba(74,126,170,.24);outline-offset:4px}
+.stamp-agp span,.stamp-agp small{font-size:10px;letter-spacing:2px}
+.stamp-agp strong{font-size:23px;margin:3px 0}
+.stamp-loveland{top:24px;right:22px;width:142px;height:142px;border-radius:50%;border:3px double rgba(74,126,170,.3);transform:rotate(11deg);outline:1px dashed rgba(74,126,170,.25);outline-offset:5px}
+.stamp-loveland:before{content:"";position:absolute;inset:7px;border:1px dashed rgba(74,126,170,.25);border-radius:50%}
+.stamp-loveland strong{font:700 15px Georgia,serif;letter-spacing:1px}
+.stamp-loveland span{font-size:24px;margin:5px 0}
+.stamp-loveland small{font-size:7px;letter-spacing:1.2px}
+.stamp-flight{left:22px;bottom:34px;width:116px;height:116px;border-radius:50%;border:3px double rgba(74,126,170,.27);transform:rotate(-12deg)}
+.stamp-flight:before{content:"";position:absolute;inset:6px;border:1px dashed rgba(74,126,170,.24);border-radius:50%}
+.stamp-flight small,.stamp-flight span{font-size:7px;letter-spacing:1px}
+.stamp-flight strong{font-size:32px;margin:4px 0}
+.stamp-globe{right:34px;bottom:42px;width:104px;height:104px;border-radius:50%;border:2px solid rgba(74,126,170,.25);transform:rotate(9deg)}
+.stamp-globe:before,.stamp-globe:after{content:"";position:absolute;border:1px solid rgba(74,126,170,.23);border-radius:50%;inset:10px 25px}
+.stamp-globe:after{inset:25px 8px}
+.stamp-globe strong{font-size:34px;line-height:1}
+.stamp-globe span{font-size:7px;letter-spacing:1px;margin-top:3px}
+.passenger-form-wrap form,.passenger-form-wrap .success{z-index:1}
+.passenger-form-wrap .ticket-main{position:relative;z-index:1}
+@media(max-width:620px){
+ .stamp-agp{top:14px;left:-12px;width:104px;height:60px}
+ .stamp-agp span,.stamp-agp small{font-size:7px}.stamp-agp strong{font-size:16px}
+ .stamp-loveland{top:15px;right:12px;width:88px;height:88px}
+ .stamp-loveland strong{font-size:9px}.stamp-loveland span{font-size:16px}.stamp-loveland small{font-size:5px}
+ .stamp-flight{left:8px;bottom:18px;width:76px;height:76px}
+ .stamp-flight small,.stamp-flight span{font-size:5px}.stamp-flight strong{font-size:22px}
+ .stamp-globe{right:10px;bottom:20px;width:70px;height:70px}
+ .stamp-globe strong{font-size:23px}.stamp-globe span{font-size:5px}
+}
+
 </style>
 </head>
 <body>
@@ -191,7 +227,13 @@ main:before{display:none}
 <img src="images/Celebration%20Air%20Boarding%20Pass%20(1).png" alt="Boarding pass Celebration Air">
 
 </section>
-<section class="form-wrap passenger-form-wrap"><form id="rsvp"><div class="ticket-main">
+<section class="form-wrap passenger-form-wrap">
+<div class="travel-stamps" aria-hidden="true">
+  <div class="travel-stamp stamp-agp"><span>ESPAÑA</span><strong>AGP ✈</strong><small>MÁLAGA</small></div>
+  <div class="travel-stamp stamp-loveland"><strong>LOVELAND</strong><span>✈</span><small>DESTINATION · 2027</small></div>
+  <div class="travel-stamp stamp-flight"><small>CELEBRATION AIR</small><strong>✈</strong><span>03 OCT 2027</span></div>
+  <div class="travel-stamp stamp-globe"><strong>◎</strong><span>WORLD TRAVEL</span></div>
+</div><form id="rsvp"><div class="ticket-main">
 <div class="ticket-form-label">Hacer check in para el vuelo</div>
 <div class="field"><label for="name">Nombre y apellidos</label><input id="name" name="name" required placeholder="Tu nombre completo"></div>
 <div class="field"><span class="group-label">Check-in para el vuelo</span><div class="choices"><label class="choice"><input type="radio" name="attendance" value="Hacer check in para el vuelo" required> Confirmar check in</label><label class="choice"><input type="radio" name="attendance" value="Dudoso"> Tengo dudas para facturar</label><label class="choice"><input type="radio" name="attendance" value="No podré asistir"> Vuelo cancelado, no asistiré</label></div></div>
