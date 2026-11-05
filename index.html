@@ -115,6 +115,41 @@ form{display:grid;gap:0}.ticket-main{display:grid;gap:22px}.ticket-stub{display:
 .boarding-pass-image-wrap img{display:block;width:100%;height:auto}
 .boarding-pass-class-overlay{position:absolute;left:54.5%;top:34.2%;width:19%;height:8.8%;display:flex;align-items:center;justify-content:flex-start;padding-left:.5%;background:rgba(250,250,248,.97);color:#111;font:700 clamp(9px,1.55vw,19px)/1 Arial,Helvetica,sans-serif;white-space:nowrap}
 @media(max-width:620px){.boarding-pass-image-wrap{margin-bottom:90px}.boarding-pass-class-overlay{font-size:clamp(7px,2.1vw,13px)}}
+
+/* Fondo de contenido: degradado inspirado en los tonos del cielo y la pista de portada.
+   La imagen principal y su encuadre permanecen intactos. */
+body{background:linear-gradient(180deg,#71879b 0%,#9eb2c5 20%,#c7d5e3 48%,#e8eef5 78%,#f5f7fa 100%);background-attachment:fixed}
+main{max-width:none;width:100%;padding:0 24px 90px}
+main:before{display:none}
+.intro,.details,.boarding-pass-image-wrap,.passenger-form-wrap,.names,main>div:last-child{max-width:920px;margin-left:auto;margin-right:auto}
+.intro{color:#fff;text-shadow:0 1px 10px rgba(28,48,67,.22)}
+.intro p{color:#f1f5f8}
+.details{box-shadow:0 10px 30px rgba(39,62,82,.12);border-radius:12px;overflow:hidden}
+.boarding-pass-image-wrap{margin-bottom:90px}
+.passenger-form-wrap{max-width:920px!important;margin:0 auto!important;padding:clamp(26px,5vw,54px)!important;border:1px solid rgba(255,255,255,.78)!important;border-radius:24px!important;background:linear-gradient(145deg,rgba(250,253,255,.97),rgba(229,238,247,.96))!important;box-shadow:0 18px 48px rgba(35,59,82,.2)!important;overflow:hidden}
+.passenger-form-wrap:before{content:"ESPAÑA  •  AGP  ✈  MÁLAGA";position:absolute;top:34px;left:-24px;transform:rotate(-13deg);border:2px solid rgba(81,133,177,.24);border-radius:8px;padding:12px 22px;color:rgba(67,119,163,.34);font:700 15px Arial,sans-serif;letter-spacing:2px;pointer-events:none}
+.passenger-form-wrap:after{content:"LOVELAND  ✈";position:absolute;top:44px;right:-12px;transform:rotate(12deg);border:2px dashed rgba(81,133,177,.28);border-radius:50%;width:126px;height:126px;display:flex;align-items:center;justify-content:center;color:rgba(67,119,163,.35);font:700 14px Georgia,serif;letter-spacing:1px;pointer-events:none}
+.passenger-form-wrap form,.passenger-form-wrap .success{position:relative;z-index:1}
+.passenger-form-wrap .ticket-main{gap:22px}
+.passenger-form-wrap .ticket-form-label:first-child{display:block;text-align:center;margin:0 0 20px;color:#1e4568;font:700 clamp(21px,3vw,28px) Georgia,serif;letter-spacing:1.1px}
+.passenger-form-wrap .ticket-form-label:first-child:before{content:"✈";display:block;color:#28577d;font:30px Arial,sans-serif;margin-bottom:10px}
+.passenger-form-wrap .field label,.passenger-form-wrap .group-label{font:700 14px Arial,sans-serif;letter-spacing:0;text-transform:none;color:#173b5b}
+.passenger-form-wrap .field input,.passenger-form-wrap .field select,.passenger-form-wrap .field textarea{border:1px solid #c8d5e2;border-radius:11px;background:rgba(255,255,255,.9);padding:14px 15px;font:15px Arial,sans-serif}
+.passenger-form-wrap .choices{display:grid;gap:9px}
+.passenger-form-wrap .choice{min-width:0;flex:none;border:1px solid #c8d5e2;border-radius:10px;background:rgba(255,255,255,.78);padding:13px 15px;font:14px Arial,sans-serif;color:#20364b}
+.passenger-form-wrap .choice input{width:20px;height:20px;accent-color:#2c6595}
+.passenger-form-wrap .additional-label{padding-top:22px;border-top:1px solid rgba(110,143,171,.32);font-size:11px!important;letter-spacing:1.5px!important;text-transform:uppercase!important;color:#536f87!important}
+.passenger-form-wrap .conditional{border-radius:10px;background:rgba(218,232,244,.72);border-left:3px solid #376e9c}
+.passenger-form-wrap .submit{border-radius:11px;background:linear-gradient(100deg,#173f63,#2c628e);padding:17px 24px;font:700 13px Arial,sans-serif;letter-spacing:1.2px;box-shadow:0 5px 14px rgba(25,64,99,.18)}
+@media(max-width:620px){
+ main{padding-left:16px;padding-right:16px}
+ .boarding-pass-image-wrap{margin-bottom:64px}
+ .passenger-form-wrap{border-radius:19px!important;padding:28px 19px!important}
+ .passenger-form-wrap:before{top:18px;left:-34px;font-size:10px;padding:8px 18px}
+ .passenger-form-wrap:after{top:22px;right:-34px;width:90px;height:90px;font-size:10px}
+ .passenger-form-wrap .ticket-form-label:first-child{font-size:21px;padding:22px 0 0}
+}
+
 </style>
 </head>
 <body>
@@ -125,11 +160,11 @@ form{display:grid;gap:0}.ticket-main{display:grid;gap:22px}.ticket-stub{display:
 <section class="intro"><h2>¡Nos casamos!</h2><p>Nos haría muchísima ilusión compartir contigo un día tan especial. Queremos que nos acompañes y, para ayudarnos a organizarlo todo, te agradeceríamos que rellenaras este pequeño formulario.</p></section>
 <section class="details" aria-label="Detalles de la boda"><div class="detail"><div class="label">Fecha</div><strong>Domingo, 03 de octubre de 2027</strong></div><div class="detail"><div class="label">Hora</div><strong>12:00 h</strong></div><div class="detail"><div class="label">Lugar</div><strong>Finca Paloverde Ágape, Alhaurín de la Torre</strong></div></section>
 <section class="boarding-pass-image-wrap" aria-label="Tarjeta de embarque">
-<img src="images/Celebration%20Air%20Boarding%20Pass.png" alt="Boarding pass Celebration Air">
-<span class="boarding-pass-class-overlay">NO REFUNDS</span>
+<img src="images/Celebration%20Air%20Boarding%20Pass%20(1).png" alt="Boarding pass Celebration Air">
+
 </section>
 <section class="form-wrap passenger-form-wrap"><form id="rsvp"><div class="ticket-main">
-<div class="ticket-form-label">Datos del pasajero / Passenger details</div>
+<div class="ticket-form-label">Hacer check in para el vuelo</div>
 <div class="field"><label for="name">Nombre y apellidos</label><input id="name" name="name" required placeholder="Tu nombre completo"></div>
 <div class="field"><span class="group-label">Check-in para el vuelo</span><div class="choices"><label class="choice"><input type="radio" name="attendance" value="Hacer check in para el vuelo" required> Confirmar check in</label><label class="choice"><input type="radio" name="attendance" value="Dudoso"> Tengo dudas para facturar</label><label class="choice"><input type="radio" name="attendance" value="No podré asistir"> Vuelo cancelado, no asistiré</label></div></div>
 <div class="ticket-form-label additional-label">Información adicional / Passenger notes</div>
