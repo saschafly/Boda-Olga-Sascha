@@ -309,6 +309,24 @@ main:before{display:none}
   }
 }
 
+/* Corrección de sellos: AGP más desplazado a la izquierda y sellos inferiores integrados sin placa visible */
+.stamp-agp{
+  left:-28px!important;
+  top:-7px!important;
+}
+.stamp-flight,.stamp-globe{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  mix-blend-mode:multiply!important;
+  filter:grayscale(1) contrast(2.2) brightness(1.18)!important;
+  opacity:.48!important;
+}
+@media(max-width:620px){
+  .stamp-agp{left:-22px!important;top:2px!important}
+  .stamp-flight,.stamp-globe{filter:grayscale(1) contrast(2.2) brightness(1.18)!important;opacity:.42!important}
+}
+
 </style>
 </head>
 <body>
