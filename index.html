@@ -405,6 +405,48 @@ main:before{display:none}
   }
 }
 
+/* Recorte exacto del lienzo de la imagen: mostrar solo el billete rojo,
+   sin márgenes blancos arriba, abajo ni a los lados. */
+.boarding-pass-image-wrap{
+  width:100%!important;
+  max-width:920px!important;
+  aspect-ratio:3.445!important;
+  position:relative!important;
+  overflow:hidden!important;
+  margin:12px auto 38px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:12px!important;
+  background:transparent!important;
+  box-shadow:0 10px 30px rgba(39,62,82,.12)!important;
+  line-height:0!important;
+}
+.boarding-pass-image-wrap img{
+  position:absolute!important;
+  display:block!important;
+  width:107.84%!important;
+  max-width:none!important;
+  height:auto!important;
+  left:-2.52%!important;
+  top:-29.9%!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  filter:none!important;
+  object-fit:initial!important;
+}
+@media(max-width:620px){
+  .boarding-pass-image-wrap{
+    width:100%!important;
+    max-width:100%!important;
+    aspect-ratio:3.445!important;
+    margin:0 auto 30px!important;
+    border-radius:12px!important;
+  }
+}
+
 </style>
 </head>
 <body>
