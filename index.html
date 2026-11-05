@@ -238,6 +238,15 @@ main:before{display:none}
   }
 }
 
+
+/* Sellos originales recortados de las capturas: solo tinta, sin placa ni fondo */
+.travel-stamps{position:absolute;inset:0;pointer-events:none;z-index:1}
+.stamp-art{position:absolute;display:block;height:auto;object-fit:contain;background:transparent!important;border:0!important;box-shadow:none!important;mix-blend-mode:multiply;opacity:.88}
+.stamp-agp{width:150px;left:12px;top:-7px;transform:rotate(-1deg)}
+.stamp-love{width:145px;right:8px;top:20px;transform:rotate(0deg)}
+.stamp-flight{width:112px;left:22px;top:47%;transform:rotate(0deg)}
+.stamp-globe{width:82px;right:24px;top:49%;transform:rotate(0deg)}
+@media(max-width:620px){.stamp-agp{width:108px;left:3px;top:2px}.stamp-love{width:104px;right:2px;top:12px}.stamp-flight{width:82px;left:4px;top:49%}.stamp-globe{width:60px;right:7px;top:51%}}
 </style>
 </head>
 <body>
@@ -253,10 +262,10 @@ main:before{display:none}
 </section>
 <section class="form-wrap passenger-form-wrap">
 <div class="travel-stamps" aria-hidden="true">
-<svg class="stamp-art stamp-agp" viewBox="0 0 170 130"><g transform="rotate(-17 85 65)" fill="none" stroke="#6f9bc2" stroke-width="2.2" opacity=".62"><rect x="8" y="12" width="154" height="106" rx="5" stroke-dasharray="3 2"/><path d="M17 23h136M17 106h136" stroke-width="1"/><text x="85" y="42" text-anchor="middle" font-size="14" letter-spacing="3" fill="#6f9bc2" stroke="none">ESPAÑA</text><text x="85" y="78" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="bold" fill="#6f9bc2" stroke="none">AGP ✈</text><text x="85" y="99" text-anchor="middle" font-size="11" letter-spacing="2" fill="#6f9bc2" stroke="none">MÁLAGA</text></g></svg>
-<svg class="stamp-art stamp-love" viewBox="0 0 160 140"><g transform="rotate(13 80 70)" fill="none" stroke="#6f9bc2" opacity=".62"><ellipse cx="80" cy="70" rx="69" ry="48" stroke-width="2.5" stroke-dasharray="5 3"/><ellipse cx="80" cy="70" rx="61" ry="40" stroke-width="1.5" stroke-dasharray="2 3"/><text x="80" y="68" text-anchor="middle" fill="#6f9bc2" stroke="none" font-family="Georgia,serif" font-weight="bold" font-size="20">LOVELAND</text><text x="80" y="98" text-anchor="middle" fill="#6f9bc2" stroke="none" font-size="23">✈</text><path d="M37 38l7 5m72-5-7 5" stroke-width="2"/></g></svg>
-<svg class="stamp-art stamp-flight" viewBox="0 0 130 130"><g transform="rotate(-15 65 65)" fill="none" stroke="#6f9bc2" opacity=".62"><circle cx="65" cy="65" r="57" stroke-width="2.4" stroke-dasharray="2 2"/><circle cx="65" cy="65" r="49" stroke-width="1.3" stroke-dasharray="3 2"/><text x="65" y="25" text-anchor="middle" font-size="7" letter-spacing="1.2" fill="#6f9bc2" stroke="none">CELEBRATION AIR</text><text x="65" y="83" text-anchor="middle" font-size="53" fill="#6f9bc2" stroke="none">✈</text><text x="65" y="105" text-anchor="middle" font-size="8" letter-spacing="1.4" fill="#6f9bc2" stroke="none">03 OCT 2027</text></g></svg>
-<svg class="stamp-art stamp-globe" viewBox="0 0 110 110"><g transform="rotate(13 55 55)" fill="none" stroke="#6f9bc2" stroke-width="2" opacity=".62"><circle cx="55" cy="55" r="43"/><ellipse cx="55" cy="55" rx="19" ry="43"/><ellipse cx="55" cy="55" rx="43" ry="17"/><path d="M20 32l70 46M20 78l70-46M55 12v86"/></g></svg>
+<img class="stamp-art stamp-agp" src="images/stamp-agp.png" alt="">
+<img class="stamp-art stamp-love" src="images/stamp-loveland.png" alt="">
+<img class="stamp-art stamp-flight" src="images/stamp-flight.png" alt="">
+<img class="stamp-art stamp-globe" src="images/stamp-globe.png" alt="">
 </div><form id="rsvp"><div class="ticket-main">
 <div class="ticket-form-label">Hacer check in para el vuelo</div>
 <div class="field"><label for="name">Nombre y apellidos</label><input id="name" name="name" required placeholder="Tu nombre completo"></div>
