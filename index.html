@@ -53,41 +53,62 @@ form{display:grid;gap:0}.ticket-main{display:grid;gap:22px}.ticket-stub{display:
 .choices{display:flex;gap:12px;flex-wrap:wrap}.choice{display:flex;align-items:center;gap:9px;border:1px solid var(--line);padding:12px 15px;flex:1;min-width:170px;font-size:15px;cursor:pointer}.choice input{accent-color:var(--site-primary)}.hint{font-size:12px;color:var(--muted);line-height:1.5}.conditional{display:none;padding:18px;background:#F0F6FA;border-left:2px solid var(--site-primary);gap:18px}.conditional.show{display:grid}.submit{border:0;background:var(--site-primary);color:var(--site-on-primary);padding:17px 24px;font:11px Arial,sans-serif;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:4px;transition:opacity .2s}.submit:hover{opacity:.88}.success{display:none;text-align:center;padding:24px 8px}.success h3{font:34px var(--site-font-heading);font-weight:400}.success p{color:var(--muted);line-height:1.7}.footer{text-align:center;padding:60px 20px 0;color:var(--muted);font-size:14px}.footer .names{font:34px var(--site-font-heading);color:var(--site-primary);margin-bottom:12px}
 @media(max-width:620px){.hero{min-height:570px}.hero:before,.hero:after{font-size:100px}.details{grid-template-columns:1fr}.detail{padding:22px}.intro{padding:58px 5px 42px}.intro:before{left:2%;top:14px;font-size:30px}.choice{min-width:100%}}
 \n.boarding-pass-card{margin-bottom:28px;padding-bottom:30px}\n.passenger-form-wrap{margin-top:0}\n.passenger-form-wrap .ticket-main{display:grid;gap:22px}\n.passenger-form-wrap .ticket-form-label{margin:0}\n.passenger-form-wrap .additional-label{padding-top:22px;border-top:2px dashed #9aafbd}\n@media(max-width:620px){.boarding-pass-card{margin-bottom:22px}.passenger-form-wrap .additional-label{padding-top:18px}}\n
-/* Airline-style boarding pass */
-.boarding-pass-card{max-width:720px;padding:0!important;border:0!important;border-radius:5px;overflow:hidden;background:#fff;box-shadow:0 14px 38px rgba(24,55,78,.18);color:#173c59;font-family:Arial,Helvetica,sans-serif}
-.bp-topline{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 30px;background:#173f60;color:#fff}
-.bp-brand{display:flex;align-items:center;gap:11px}
-.bp-brand-mark{width:43px;height:43px;border:1px solid rgba(255,255,255,.8);border-radius:50%;display:grid;place-items:center;font:17px Georgia,serif;letter-spacing:-2px}
-.bp-brand-mark span{font-size:11px;margin:0 1px}
-.bp-brand-name{font-size:12px;font-weight:700;letter-spacing:1.6px;line-height:1.5}
-.bp-brand-name small{font-size:8px;font-weight:400;letter-spacing:2.2px;opacity:.75}
-.bp-label{font-size:10px;letter-spacing:2px;text-align:right;font-weight:700}
-.bp-label span{color:#9fc3d9}
-.bp-main{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:34px 34px 26px}
-.bp-destination{min-width:0;display:flex;flex-direction:column;gap:9px}
-.bp-caption,.bp-detail span,.bp-passenger span{font-size:9px;letter-spacing:1.8px;font-weight:700;color:#6c8495}
-.bp-destination strong{font-size:clamp(23px,4vw,34px);line-height:1.04;letter-spacing:.2px;color:#173f60}
-.bp-location{font-size:9px;letter-spacing:1.5px;color:#71899a}
-.bp-flight-mark{display:flex;flex-direction:column;align-items:center;gap:7px;color:#4d7b9b;flex-shrink:0}
-.bp-flight-mark span{font-size:38px;transform:rotate(0deg)}
-.bp-flight-mark small{font-size:10px;letter-spacing:1.5px;font-weight:700;color:#173f60}
-.bp-divider{height:1px;margin:0 30px;border-top:1px dashed #a9bac5;position:relative}
-.bp-divider:before,.bp-divider:after{content:"";position:absolute;top:-10px;width:20px;height:20px;border-radius:50%;background:#f2f7fa}
-.bp-divider:before{left:-40px}.bp-divider:after{right:-40px}
-.bp-details{display:grid;grid-template-columns:1.1fr 1.2fr 1fr 1.25fr;gap:12px;padding:25px 30px 23px}
-.bp-detail{display:flex;flex-direction:column;gap:9px;min-width:0}
-.bp-detail span{font-size:8px;letter-spacing:1.2px}
-.bp-detail strong{font-size:13px;letter-spacing:.4px;color:#173f60;white-space:nowrap}
-.bp-bottom{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 30px;background:#edf3f6}
-.bp-passenger{display:flex;flex-direction:column;gap:7px;flex-shrink:0}
-.bp-passenger strong{font-size:12px;letter-spacing:1.8px;color:#173f60}
-.bp-barcode{height:43px;flex:1;max-width:230px;display:flex;align-items:stretch;gap:2px;overflow:hidden}
-.bp-barcode i{display:block;background:#173f60;flex:1}
-.bp-barcode i:nth-child(3n){flex:2}.bp-barcode i:nth-child(4n){flex:.55}.bp-barcode i:nth-child(5n){flex:1.6}
-.bp-code{font:8px monospace;letter-spacing:1px;color:#607b8e;white-space:nowrap}
-.bp-stub{display:flex;justify-content:space-between;gap:12px;padding:12px 30px;background:#dce8ef;color:#60798b;font-size:8px;letter-spacing:1.5px}
-.bp-stub span{display:flex;gap:7px;align-items:center}.bp-stub strong{font-size:10px;color:#173f60;letter-spacing:1px}
-@media(max-width:620px){.boarding-pass-card{margin-bottom:22px}.bp-topline{padding:18px 18px;align-items:flex-start}.bp-label{font-size:8px;letter-spacing:1.2px;max-width:125px;line-height:1.5}.bp-brand-mark{width:38px;height:38px}.bp-brand-name{font-size:10px}.bp-main{padding:28px 20px 22px;gap:10px}.bp-destination strong{font-size:25px}.bp-location{font-size:8px;letter-spacing:1px}.bp-flight-mark span{font-size:30px}.bp-details{grid-template-columns:1fr 1fr;gap:19px 12px;padding:22px 20px}.bp-detail strong{font-size:12px}.bp-bottom{padding:16px 20px;flex-wrap:wrap;gap:12px}.bp-barcode{max-width:none;min-width:90px;height:32px}.bp-code{font-size:7px}.bp-stub{padding:11px 20px;gap:7px;letter-spacing:1px}.bp-stub span{gap:4px}.bp-stub strong{font-size:9px}}
+/* Red airline boarding pass inspired by the supplied reference */
+.boarding-pass-card{max-width:900px!important;padding:0!important;border:0!important;border-radius:28px!important;overflow:hidden;background:#f7f7f5!important;box-shadow:0 14px 38px rgba(70,30,30,.14)!important;color:#333;font-family:Arial,Helvetica,sans-serif}
+.bp-red-header{height:58px;padding:0 28px;background:#d71920;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:18px;position:relative}
+.bp-red-brand{display:flex;align-items:center;gap:12px;font-weight:700;font-size:13px;letter-spacing:.4px}
+.bp-red-plane{font-size:31px;line-height:1;transform:rotate(0deg)}
+.bp-red-wordmark{font:italic 15px Georgia,serif;white-space:nowrap}
+.bp-red-title{font-size:12px;letter-spacing:1.4px;font-weight:700;text-align:right}
+.bp-ticket-body{display:grid;grid-template-columns:76px minmax(0,1fr) 178px;min-height:245px;position:relative;background-color:#f7f7f5;background-image:radial-gradient(ellipse at 48% 40%,rgba(205,210,210,.16),transparent 58%),repeating-linear-gradient(135deg,transparent 0 18px,rgba(190,195,195,.045) 18px 19px)}
+.bp-ticket-barcode{display:flex;align-items:center;justify-content:center;padding:18px 12px;border-right:1px solid #e0e0dc}
+.bp-ticket-barcode .bp-barcode{width:38px;height:190px;max-width:none;flex:none;display:flex;flex-direction:column;gap:2px}
+.bp-ticket-barcode .bp-barcode i{width:100%;height:auto;flex:1;background:#292929}
+.bp-ticket-barcode .bp-barcode i:nth-child(3n){flex:2}.bp-ticket-barcode .bp-barcode i:nth-child(4n){flex:.55}.bp-ticket-barcode .bp-barcode i:nth-child(5n){flex:1.6}
+.bp-ticket-info{padding:26px 28px 20px;min-width:0;display:grid;grid-template-columns:1.2fr .8fr .75fr;gap:18px 22px;align-content:center}
+.bp-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.bp-field span{font-size:10px;color:#666;line-height:1.2}
+.bp-field strong{font-size:14px;color:#303030;font-weight:500;line-height:1.25}
+.bp-field.destination{grid-column:1/2}
+.bp-field.destination strong{font-size:16px;font-weight:700}
+.bp-field.passenger{grid-column:1/2}
+.bp-field.time{grid-column:2/3}
+.bp-field.flight{grid-column:3/4}
+.bp-field.gate{grid-column:2/3}
+.bp-field.seat{grid-column:3/4}
+.bp-red-time{color:#d71920!important;font-size:20px!important;font-weight:700!important}
+.bp-red-stub{border-left:1px dashed #c8c8c4;padding:20px 17px 18px;display:grid;grid-template-columns:1fr 1fr;gap:14px 12px;align-content:center;position:relative;background:rgba(255,255,255,.38)}
+.bp-red-stub:before{content:"BOARDING PASS";position:absolute;top:14px;left:17px;right:12px;font-size:9px;letter-spacing:1.3px;color:#777;font-weight:700}
+.bp-red-stub .bp-field{padding-top:5px}
+.bp-red-stub .bp-field span{font-size:9px}
+.bp-red-stub .bp-field strong{font-size:13px}
+.bp-red-stub .bp-field.stub-passenger{grid-column:1/-1;padding-top:22px}
+.bp-red-stub .bp-field.stub-passenger strong{font-size:12px}
+.bp-red-stub .bp-field.stub-gate{grid-column:1/2}
+.bp-red-stub .bp-field.stub-date{grid-column:2/3}
+.bp-red-footer{height:18px;background:#d71920}
+.bp-red-stub .bp-field strong.bp-red-time{font-size:17px!important}
+@media(max-width:620px){
+ .boarding-pass-card{border-radius:20px!important;margin-bottom:22px}
+ .bp-red-header{height:auto;min-height:58px;padding:13px 16px;gap:8px}
+ .bp-red-brand{gap:8px;font-size:11px}.bp-red-plane{font-size:25px}.bp-red-wordmark{font-size:12px}
+ .bp-red-title{font-size:8px;letter-spacing:.8px;max-width:112px}
+ .bp-ticket-body{grid-template-columns:43px minmax(0,1fr);min-height:0}
+ .bp-ticket-barcode{padding:12px 8px}
+ .bp-ticket-barcode .bp-barcode{height:160px;width:25px}
+ .bp-ticket-info{padding:20px 14px 18px;grid-template-columns:1fr 1fr;gap:16px 12px}
+ .bp-field span{font-size:9px}.bp-field strong{font-size:12px}
+ .bp-field.destination{grid-column:1/-1}.bp-field.destination strong{font-size:15px}
+ .bp-field.passenger{grid-column:1/-1}
+ .bp-field.time{grid-column:1/2}.bp-field.flight{grid-column:2/3}
+ .bp-field.gate{grid-column:1/2}.bp-field.seat{grid-column:2/3}
+ .bp-red-time{font-size:17px!important}
+ .bp-red-stub{grid-column:1/-1;border-left:0;border-top:1px dashed #c8c8c4;padding:28px 16px 16px;grid-template-columns:repeat(4,1fr);gap:10px}
+ .bp-red-stub:before{top:10px;left:16px}
+ .bp-red-stub .bp-field.stub-passenger{grid-column:1/-1;padding-top:4px}
+ .bp-red-stub .bp-field.stub-gate,.bp-red-stub .bp-field.stub-date{grid-column:auto}
+ .bp-red-footer{height:13px}
+}
 
 </style>
 </head>
@@ -98,7 +119,27 @@ form{display:grid;gap:0}.ticket-main{display:grid;gap:22px}.ticket-stub{display:
 <main>
 <section class="intro"><h2>¡Nos casamos!</h2><p>Nos haría muchísima ilusión compartir contigo un día tan especial. Queremos que nos acompañes y, para ayudarnos a organizarlo todo, te agradeceríamos que rellenaras este pequeño formulario.</p></section>
 <section class="details" aria-label="Detalles de la boda"><div class="detail"><div class="label">Fecha</div><strong>Domingo, 03 de octubre de 2027</strong></div><div class="detail"><div class="label">Hora</div><strong>12:00 h</strong></div><div class="detail"><div class="label">Lugar</div><strong>Finca Paloverde Ágape, Alhaurín de la Torre</strong></div></section>
-<section class="form-wrap boarding-pass-card" aria-label="Tarjeta de embarque"><div class="bp-topline"><div class="bp-brand"><span class="bp-brand-mark">O<span>&</span>S</span><span class="bp-brand-name">OLGA & SASCHA<br><small>CELEBRATION AIR</small></span></div><div class="bp-label">BOARDING PASS <span>·</span> TARJETA DE EMBARQUE</div></div><div class="bp-main"><div class="bp-destination"><span class="bp-caption">DESTINATION / DESTINO</span><strong>FINCA PALOVERDE<br>ÁGAPE</strong><span class="bp-location">ALHAURÍN DE LA TORRE · MÁLAGA</span></div><div class="bp-flight-mark"><span>✈</span><small>OS · 0310</small></div></div><div class="bp-divider"></div><div class="bp-details"><div class="bp-detail"><span>DATE / FECHA</span><strong>03 OCT 2027</strong></div><div class="bp-detail"><span>BOARDING / EMBARQUE</span><strong>12:00 H</strong></div><div class="bp-detail"><span>FLIGHT / VUELO</span><strong>OS 0310</strong></div><div class="bp-detail"><span>CLASS / CLASE</span><strong>CELEBRATION</strong></div></div><div class="bp-bottom"><div class="bp-passenger"><span>PASSENGER / PASAJERO</span><strong>OLGA & SASCHA</strong></div><div class="bp-barcode" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span class="bp-code">OS0310&nbsp; 031027&nbsp; AGAPE</span></div><div class="bp-stub"><span>GATE <strong>—</strong></span><span>SEAT <strong>LOVE</strong></span><span>GROUP <strong>01</strong></span></div></section>
+<section class="form-wrap boarding-pass-card" aria-label="Tarjeta de embarque">
+<div class="bp-red-header"><div class="bp-red-brand"><span class="bp-red-plane">✈</span><span class="bp-red-wordmark">Olga & Sascha</span></div><div class="bp-red-title">BOARDING PASS&nbsp; | &nbsp;TARJETA DE EMBARQUE</div></div>
+<div class="bp-ticket-body">
+<div class="bp-ticket-barcode" aria-hidden="true"><div class="bp-barcode"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+<div class="bp-ticket-info">
+<div class="bp-field passenger"><span>NAME OF PASSENGER / PASAJEROS</span><strong>OLGA & SASCHA</strong></div>
+<div class="bp-field destination"><span>FROM / ORIGEN</span><strong>MÁLAGA</strong></div>
+<div class="bp-field destination"><span>TO / DESTINO</span><strong>FINCA PALOVERDE ÁGAPE</strong></div>
+<div class="bp-field time"><span>BOARDING TIME / EMBARQUE</span><strong class="bp-red-time">12:00 H</strong></div>
+<div class="bp-field flight"><span>FLIGHT Nº / VUELO</span><strong>OS 0310</strong></div>
+<div class="bp-field gate"><span>DATE / FECHA</span><strong>03 OCT 2027</strong></div>
+<div class="bp-field seat"><span>CLASS / CLASE</span><strong>CELEBRATION</strong></div>
+</div>
+<aside class="bp-red-stub">
+<div class="bp-field stub-passenger"><span>NAME OF PASSENGER</span><strong>OLGA & SASCHA</strong></div>
+<div class="bp-field stub-gate"><span>GATE</span><strong class="bp-red-time">—</strong></div>
+<div class="bp-field stub-date"><span>DATE</span><strong>03/10/2027</strong></div>
+<div class="bp-field"><span>SEAT</span><strong>LOVE</strong></div>
+<div class="bp-field"><span>FLIGHT</span><strong>OS 0310</strong></div>
+</aside>
+</div><div class="bp-red-footer"></div></section>
 <section class="form-wrap passenger-form-wrap"><form id="rsvp"><div class="ticket-main">
 <div class="ticket-form-label">Datos del pasajero / Passenger details</div>
 <div class="field"><label for="name">Nombre y apellidos</label><input id="name" name="name" required placeholder="Tu nombre completo"></div>
