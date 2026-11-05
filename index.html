@@ -327,6 +327,48 @@ main:before{display:none}
   .stamp-flight,.stamp-globe{filter:grayscale(1) contrast(2.2) brightness(1.18)!important;opacity:.42!important}
 }
 
+/* Boarding pass: usar el PNG original de GitHub, sin alterar su diseño.
+   El contenedor coincide con el perímetro rojo del billete y recorta únicamente
+   el lienzo gris/blanco que rodea la tarjeta en el archivo fuente. */
+.boarding-pass-image-wrap{
+  width:100%!important;
+  max-width:920px!important;
+  aspect-ratio:3.455!important;
+  position:relative!important;
+  overflow:hidden!important;
+  margin:12px auto 38px!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  line-height:0!important;
+}
+.boarding-pass-image-wrap img{
+  position:absolute!important;
+  display:block!important;
+  width:104.96%!important;
+  max-width:none!important;
+  height:auto!important;
+  left:-2.51%!important;
+  top:-29.92%!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  clip-path:none!important;
+  filter:drop-shadow(0 12px 13px rgba(25,48,69,.22))!important;
+  object-fit:initial!important;
+}
+@media(max-width:620px){
+  .boarding-pass-image-wrap{
+    width:100%!important;
+    max-width:100%!important;
+    aspect-ratio:3.455!important;
+    margin:0 auto 30px!important;
+  }
+}
+
 </style>
 </head>
 <body>
