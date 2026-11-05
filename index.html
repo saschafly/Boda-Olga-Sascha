@@ -150,76 +150,38 @@ main:before{display:none}
 }
 
 
-/* Boarding pass integrado en el fondo, con efecto de tarjeta flotante */
+/* Boarding pass sin marco: recorte del margen blanco de la imagen */
 .boarding-pass-image-wrap{
-  max-width:1080px!important;
-  width:100%;
-  margin:12px auto 76px!important;
-  padding:0!important;
-  background:transparent!important;
-  border:0!important;
-  border-radius:0!important;
-  box-shadow:none!important;
-  overflow:visible!important;
-  line-height:0;
+  max-width:1080px!important;width:100%;margin:12px auto 76px!important;
+  padding:0!important;background:transparent!important;border:0!important;
+  border-radius:0!important;box-shadow:none!important;overflow:hidden!important;line-height:0;
 }
 .boarding-pass-image-wrap img{
-  display:block;
-  width:100%;
-  height:auto;
-  border:0!important;
-  border-radius:0!important;
-  background:transparent!important;
-  mix-blend-mode:multiply;
-  filter:drop-shadow(0 20px 20px rgba(25,48,69,.28));
+  display:block;width:100%;height:auto;border:0!important;border-radius:18px!important;
+  background:transparent!important;clip-path:inset(1.2% 1.1% 1.2% 1.1% round 18px);
+  filter:drop-shadow(0 18px 19px rgba(25,48,69,.27));
 }
-@media(max-width:620px){
-  .boarding-pass-image-wrap{width:calc(100% + 10px);margin:0 -5px 62px!important}
-  .boarding-pass-image-wrap img{filter:drop-shadow(0 12px 13px rgba(25,48,69,.24))}
-}
+@media(max-width:620px){.boarding-pass-image-wrap{width:calc(100% + 10px);margin:0 -5px 62px!important}.boarding-pass-image-wrap img{clip-path:inset(1% .8% 1% .8% round 12px);filter:drop-shadow(0 10px 12px rgba(25,48,69,.23))}}
 
-
-/* Cuatro sellos de viaje integrados en la tarjeta del formulario */
-.passenger-form-wrap{position:relative!important;overflow:visible!important}
+/* Sellos estampados según la referencia visual original */
+.passenger-form-wrap{position:relative!important;overflow:hidden!important}
 .passenger-form-wrap:before,.passenger-form-wrap:after{content:none!important;display:none!important}
-.travel-stamps{position:absolute;inset:0;pointer-events:none;z-index:0;color:rgba(62,111,155,.34);font-family:Arial,Helvetica,sans-serif}
-.travel-stamp{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;line-height:1.15;border:2px solid rgba(74,126,170,.27);color:rgba(57,105,149,.34);font-weight:700;letter-spacing:1.4px}
-.stamp-agp{top:26px;left:-15px;width:160px;height:88px;transform:rotate(-13deg);border-radius:5px;outline:1px dashed rgba(74,126,170,.24);outline-offset:4px}
-.stamp-agp span,.stamp-agp small{font-size:10px;letter-spacing:2px}
-.stamp-agp strong{font-size:23px;margin:3px 0}
-.stamp-loveland{top:24px;right:22px;width:142px;height:142px;border-radius:50%;border:3px double rgba(74,126,170,.3);transform:rotate(11deg);outline:1px dashed rgba(74,126,170,.25);outline-offset:5px}
-.stamp-loveland:before{content:"";position:absolute;inset:7px;border:1px dashed rgba(74,126,170,.25);border-radius:50%}
-.stamp-loveland strong{font:700 15px Georgia,serif;letter-spacing:1px}
-.stamp-loveland span{font-size:24px;margin:5px 0}
-.stamp-loveland small{font-size:7px;letter-spacing:1.2px}
-.stamp-flight{left:22px;bottom:34px;width:116px;height:116px;border-radius:50%;border:3px double rgba(74,126,170,.27);transform:rotate(-12deg)}
-.stamp-flight:before{content:"";position:absolute;inset:6px;border:1px dashed rgba(74,126,170,.24);border-radius:50%}
-.stamp-flight small,.stamp-flight span{font-size:7px;letter-spacing:1px}
-.stamp-flight strong{font-size:32px;margin:4px 0}
-.stamp-globe{right:34px;bottom:42px;width:104px;height:104px;border-radius:50%;border:2px solid rgba(74,126,170,.25);transform:rotate(9deg)}
-.stamp-globe:before,.stamp-globe:after{content:"";position:absolute;border:1px solid rgba(74,126,170,.23);border-radius:50%;inset:10px 25px}
-.stamp-globe:after{inset:25px 8px}
-.stamp-globe strong{font-size:34px;line-height:1}
-.stamp-globe span{font-size:7px;letter-spacing:1px;margin-top:3px}
-.passenger-form-wrap form,.passenger-form-wrap .success{z-index:1}
+.travel-stamps{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.travel-stamp{position:absolute;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:rgba(75,119,163,.30);font-family:Georgia,serif;line-height:1.05;mix-blend-mode:multiply}
+.travel-stamp svg{display:block;width:100%;height:100%;overflow:visible}
+.stamp-agp{top:8px;left:4px;width:150px;height:126px;transform:rotate(-16deg)}
+.stamp-loveland{top:24px;right:8px;width:145px;height:125px;transform:rotate(13deg)}
+.stamp-flight{left:24px;bottom:112px;width:116px;height:116px;transform:rotate(-12deg)}
+.stamp-globe{right:18px;bottom:116px;width:104px;height:104px;transform:rotate(8deg)}
+.passenger-form-wrap form,.passenger-form-wrap .success{position:relative;z-index:1}
 .passenger-form-wrap .ticket-main{position:relative;z-index:1}
 @media(max-width:620px){
- .stamp-agp{top:14px;left:-12px;width:104px;height:60px}
- .stamp-agp span,.stamp-agp small{font-size:7px}.stamp-agp strong{font-size:16px}
- .stamp-loveland{top:15px;right:12px;width:88px;height:88px}
- .stamp-loveland strong{font-size:9px}.stamp-loveland span{font-size:16px}.stamp-loveland small{font-size:5px}
- .stamp-flight{left:8px;bottom:18px;width:76px;height:76px}
- .stamp-flight small,.stamp-flight span{font-size:5px}.stamp-flight strong{font-size:22px}
- .stamp-globe{right:10px;bottom:20px;width:70px;height:70px}
- .stamp-globe strong{font-size:23px}.stamp-globe span{font-size:5px}
+ .stamp-agp{top:8px;left:-8px;width:100px;height:84px}
+ .stamp-loveland{top:18px;right:-5px;width:100px;height:88px}
+ .stamp-flight{left:-3px;bottom:105px;width:78px;height:78px}
+ .stamp-globe{right:0;bottom:108px;width:72px;height:72px}
+ .passenger-form-wrap{overflow:hidden!important}
 }
-
-
-/* Separación adicional entre el formulario y la firma final */
-.passenger-form-wrap + .names{margin-top:76px!important}
-.passenger-form-wrap + .names + div{margin-top:10px}
-@media(max-width:620px){.passenger-form-wrap + .names{margin-top:58px!important}}
-
 </style>
 </head>
 <body>
@@ -235,10 +197,10 @@ main:before{display:none}
 </section>
 <section class="form-wrap passenger-form-wrap">
 <div class="travel-stamps" aria-hidden="true">
-  <div class="travel-stamp stamp-agp"><span>ESPAÑA</span><strong>AGP ✈</strong><small>MÁLAGA</small></div>
-  <div class="travel-stamp stamp-loveland"><strong>LOVELAND</strong><span>✈</span><small>DESTINATION · 2027</small></div>
-  <div class="travel-stamp stamp-flight"><small>CELEBRATION AIR</small><strong>✈</strong><span>03 OCT 2027</span></div>
-  <div class="travel-stamp stamp-globe"><strong>◎</strong><span>WORLD TRAVEL</span></div>
+ <div class="travel-stamp stamp-agp"><svg viewBox="0 0 160 130"><g fill="none" stroke="#7397ba" stroke-width="1.7" opacity=".7"><rect x="8" y="8" width="144" height="112" rx="5"/><path d="M16 20h128M16 108h128" stroke-dasharray="4 3"/></g><g fill="#7397ba" opacity=".78" text-anchor="middle"><text x="80" y="43" font-size="13" letter-spacing="3">ESPAÑA</text><text x="80" y="78" font-size="31" font-weight="bold">AGP ✈</text><text x="80" y="98" font-size="12" letter-spacing="2">MÁLAGA</text></g></svg></div>
+ <div class="travel-stamp stamp-loveland"><svg viewBox="0 0 150 130"><g fill="none" stroke="#7397ba" stroke-width="1.8" opacity=".7"><ellipse cx="75" cy="65" rx="68" ry="57"/><ellipse cx="75" cy="65" rx="60" ry="49" stroke-dasharray="3 3"/><path d="M19 65h112" stroke-dasharray="2 4"/></g><g fill="#7397ba" opacity=".78" text-anchor="middle"><text x="75" y="61" font-size="19" font-weight="bold">LOVELAND</text><text x="75" y="91" font-size="24">✈</text><path d="M44 30l6 4m50-4l6 4" stroke="#7397ba"/></g></svg></div>
+ <div class="travel-stamp stamp-flight"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="55" fill="none" stroke="#7397ba" stroke-width="2" opacity=".7"/><circle cx="60" cy="60" r="48" fill="none" stroke="#7397ba" stroke-width="1.5" stroke-dasharray="2 3" opacity=".7"/><text x="60" y="25" text-anchor="middle" font-size="7" letter-spacing="1.2" fill="#7397ba">CELEBRATION AIR</text><text x="60" y="79" text-anchor="middle" font-size="58" fill="#7397ba" opacity=".8">✈</text><text x="60" y="103" text-anchor="middle" font-size="8" letter-spacing="1" fill="#7397ba">03 OCT 2027</text></svg></div>
+ <div class="travel-stamp stamp-globe"><svg viewBox="0 0 110 110"><circle cx="55" cy="55" r="48" fill="none" stroke="#7397ba" stroke-width="2" opacity=".7"/><ellipse cx="55" cy="55" rx="23" ry="48" fill="none" stroke="#7397ba" stroke-width="1.7" opacity=".7"/><ellipse cx="55" cy="55" rx="48" ry="19" fill="none" stroke="#7397ba" stroke-width="1.7" opacity=".7"/><path d="M18 30l74 40M18 78l74-40" stroke="#7397ba" stroke-width="1.4" opacity=".65"/></svg></div>
 </div><form id="rsvp"><div class="ticket-main">
 <div class="ticket-form-label">Hacer check in para el vuelo</div>
 <div class="field"><label for="name">Nombre y apellidos</label><input id="name" name="name" required placeholder="Tu nombre completo"></div>
