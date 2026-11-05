@@ -247,6 +247,28 @@ main:before{display:none}
 .stamp-flight{width:112px;left:22px;top:47%;transform:rotate(0deg)}
 .stamp-globe{width:82px;right:24px;top:49%;transform:rotate(0deg)}
 @media(max-width:620px){.stamp-agp{width:108px;left:3px;top:2px}.stamp-love{width:104px;right:2px;top:12px}.stamp-flight{width:82px;left:4px;top:49%}.stamp-globe{width:60px;right:7px;top:51%}}
+
+/* Recorte final del billete: elimina el filete blanco exterior de la imagen fuente */
+.boarding-pass-image-wrap{
+  aspect-ratio:3.49!important;
+  overflow:hidden!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.boarding-pass-image-wrap img{
+  clip-path:inset(6.5% 2.4% 6.5% 2.4% round 22px)!important;
+  border:0!important;
+  border-radius:0!important;
+  filter:drop-shadow(0 17px 18px rgba(25,48,69,.28))!important;
+}
+@media(max-width:620px){
+  .boarding-pass-image-wrap{aspect-ratio:3.49!important}
+  .boarding-pass-image-wrap img{
+    clip-path:inset(6.5% 2.4% 6.5% 2.4% round 14px)!important;
+  }
+}
 </style>
 </head>
 <body>
