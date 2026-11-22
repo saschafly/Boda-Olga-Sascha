@@ -522,9 +522,21 @@ main:before{display:none}
  .boarding-pass-image-wrap{width:100%!important;max-width:100%!important;
   height:auto!important;aspect-ratio:auto!important;margin:0 auto 30px!important}
 }
+
+/* Selector de idioma: control discreto superpuesto, sin alterar la maquetación */
+.language-switcher{position:fixed;top:14px;right:16px;z-index:9999;display:flex;gap:5px;padding:6px 8px;border:1px solid rgba(255,255,255,.55);border-radius:24px;background:rgba(20,48,72,.58);backdrop-filter:blur(8px);box-shadow:0 3px 14px rgba(0,0,0,.13)}
+.language-switcher button{appearance:none;border:0;background:transparent;border-radius:16px;padding:5px 7px;font:12px Arial,sans-serif;cursor:pointer;opacity:.78;line-height:1}
+.language-switcher button[aria-pressed="true"]{background:rgba(255,255,255,.23);opacity:1;box-shadow:inset 0 0 0 1px rgba(255,255,255,.55)}
+.language-switcher button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+
 </style>
 </head>
 <body>
+<div class="language-switcher" role="group" aria-label="Seleccionar idioma">
+<button type="button" data-language="es" aria-label="Español" aria-pressed="true">🇪🇸</button>
+<button type="button" data-language="en" aria-label="English" aria-pressed="false">🇬🇧</button>
+<button type="button" data-language="de" aria-label="Deutsch" aria-pressed="false">🇩🇪</button>
+</div>
 <div id="app">
 <section class="hero"><svg class="hero-clouds" viewBox="0 0 1440 570" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><defs><linearGradient id="cloudTop" x2="0" y2="1"><stop stop-color="#fff"/><stop offset=".55" stop-color="#edf5f9"/><stop offset="1" stop-color="#c7dce8"/></linearGradient><filter id="cloudShadow" x="-30%" y="-40%" width="160%" height="190%"><feGaussianBlur stdDeviation="9"/></filter><g id="cumulus"><ellipse cx="0" cy="22" rx="105" ry="29" fill="#17344b" opacity=".2" filter="url(#cloudShadow)"/><path d="M-95 25C-119 18-116-12-91-17C-87-53-39-65-14-39C7-80 69-69 75-27C113-31 130 3 105 24C88 39-67 42-95 25Z" fill="url(#cloudTop)"/><ellipse cx="-38" cy="-30" rx="32" ry="24" fill="#fff" opacity=".65"/><ellipse cx="30" cy="-38" rx="35" ry="27" fill="#fff" opacity=".55"/></g></defs><g opacity=".9"><use href="#cumulus" transform="translate(160 125) scale(1.05)"/><use href="#cumulus" transform="translate(1230 100) scale(.78)"/><use href="#cumulus" transform="translate(1030 430) scale(.55)" opacity=".5"/></g><g opacity=".35"><use href="#cumulus" transform="translate(520 470) scale(.45)"/><use href="#cumulus" transform="translate(1390 320) scale(.42)"/></g></svg><div class="hero-inner"><div class="eyebrow">Tenemos algo que celebrar</div><h1>Olga <span class="amp">&</span><br>Sascha</h1><div class="hero-rule"></div><div class="hero-date">3 · 10 · 2027</div><div class="hero-place">Málaga · España</div></div></section>
 <section class="runway-scene" aria-label="Imagen de portada de la boda"><picture><source media="(max-width: 620px)" srcset="images/Runway%20Celebration%20in%20M%C3%A1laga.png"><img src="images/Runway%2030%20Wedding%20Invitation%20at%20Dawn.png" alt="Boda de Olga y Sascha, domingo 3 de octubre de 2027, Málaga"></picture></section>
@@ -599,4 +611,114 @@ form.addEventListener('submit',async e=>{
  }
 });
 </script>
+
+<script>
+(() => {
+ const translations = {
+  es: {
+   heroAlt:"Boda de Olga y Sascha, domingo 3 de octubre de 2027, Málaga",
+   introTitle:"¡Nos casamos!",
+   introText:"Nos haría muchísima ilusión compartir contigo un día tan especial. Queremos que nos acompañes y, para ayudarnos a organizarlo todo, te agradeceríamos que rellenaras este pequeño formulario.",
+   dateLabel:"Fecha", dateValue:"Domingo, 03 de octubre de 2027", timeLabel:"Hora", timeValue:"12:00 h", placeLabel:"Lugar", placeValue:"Finca Paloverde Ágape, Alhaurín de la Torre",
+   nameLabel:"Nombre y apellidos", namePlaceholder:"Tu nombre completo", response:"Tu respuesta:",
+   attendance:["Confirmar check in","Tengo dudas para facturar","Vuelo cancelado, no asistiré"],
+   additional:"Información adicional / Passenger notes", dietLabel:"Alergias, intolerancias o necesidades alimentarias", dietPlaceholder:"Indica también si alguien necesita un menú especial",
+   songsLabel:"3 canciones que te gustaría escuchar en la boda", songsPlaceholder:"Escribe hasta 3 canciones y, si puedes, sus artistas", hint:"Opcional · ¡Queremos conocer tus favoritas!",
+   messageLabel:"Mensaje para los novios", optional:"(Opcional)", messagePlaceholder:"Déjanos un mensaje para los novios...",
+   submit:"Enviar respuesta", sending:"Enviando…", successTitle:"¡Muchas gracias!",
+   successText:"Tu respuesta se ha guardado correctamente. ¡Muchas gracias!",
+   successDemo:"Tu respuesta se ha preparado correctamente en esta demostración. En la versión publicada, las respuestas quedarán guardadas para que podamos organizarnos.",
+   footer:"Estamos deseando celebrarlo contigo",
+   errorOffline:"El formulario todavía no está conectado. Inténtalo más tarde o contacta con los novios.",
+   errorSave:"No hemos podido guardar tu respuesta. Comprueba tu conexión e inténtalo de nuevo.",
+   responseSuccess:{
+    "Hacer check in para el vuelo":"¡Qué alegría saber que nos acompañarás! Gracias por ayudarnos con la organización.",
+    "Dudoso":"¡Gracias por avisarnos! Cuando lo tengas claro, puedes volver a actualizar tu respuesta.",
+    "No podré asistir":"Muchas gracias por avisarnos. Sentimos que no puedas acompañarnos y esperamos verte pronto."
+   }
+  },
+  en: {
+   heroAlt:"Olga and Sascha's wedding, Sunday 3 October 2027, Málaga",
+   introTitle:"We're getting married!",
+   introText:"We would be delighted to share such a special day with you. We hope you can join us. To help us organise everything, we would appreciate it if you could fill in this short form.",
+   dateLabel:"Date", dateValue:"Sunday, 3 October 2027", timeLabel:"Time", timeValue:"12:00 pm", placeLabel:"Venue", placeValue:"Finca Paloverde Ágape, Alhaurín de la Torre",
+   nameLabel:"Full name", namePlaceholder:"Your full name", response:"Your response:",
+   attendance:["Confirm check-in","I'm not sure yet","Flight cancelled, I can't attend"],
+   additional:"Additional information / Passenger notes", dietLabel:"Allergies, intolerances or dietary requirements", dietPlaceholder:"Please also let us know if anyone needs a special meal",
+   songsLabel:"3 songs you'd like to hear at the wedding", songsPlaceholder:"Enter up to 3 songs and, if possible, the artists", hint:"Optional · We'd love to know your favourites!",
+   messageLabel:"Message for the couple", optional:"(Optional)", messagePlaceholder:"Leave a message for the couple...",
+   submit:"Send response", sending:"Sending…", successTitle:"Thank you!",
+   successText:"Your response has been saved successfully. Thank you!",
+   successDemo:"Your response has been prepared correctly in this demo. In the published version, responses will be saved so we can make the arrangements.",
+   footer:"We can't wait to celebrate with you",
+   errorOffline:"The form is not connected yet. Please try again later or contact the couple.",
+   errorSave:"We couldn't save your response. Please check your connection and try again.",
+   responseSuccess:{
+    "Hacer check in para el vuelo":"We're delighted you'll be joining us! Thank you for helping us with the arrangements.",
+    "Dudoso":"Thanks for letting us know! Once you've decided, you can come back and update your response.",
+    "No podré asistir":"Thank you for letting us know. We're sorry you can't make it and hope to see you soon."
+   }
+  },
+  de: {
+   heroAlt:"Die Hochzeit von Olga und Sascha, Sonntag, 3. Oktober 2027, Málaga",
+   introTitle:"Wir heiraten!",
+   introText:"Wir würden uns riesig freuen, diesen besonderen Tag mit dir zu teilen. Wir hoffen, dass du dabei bist. Damit wir alles gut organisieren können, bitten wir dich, dieses kurze Formular auszufüllen.",
+   dateLabel:"Datum", dateValue:"Sonntag, 3. Oktober 2027", timeLabel:"Uhrzeit", timeValue:"12:00 Uhr", placeLabel:"Ort", placeValue:"Finca Paloverde Ágape, Alhaurín de la Torre",
+   nameLabel:"Vor- und Nachname", namePlaceholder:"Dein vollständiger Name", response:"Deine Antwort:",
+   attendance:["Check-in bestätigen","Ich bin mir noch nicht sicher","Flug storniert, ich kann nicht teilnehmen"],
+   additional:"Zusätzliche Informationen / Passenger notes", dietLabel:"Allergien, Unverträglichkeiten oder besondere Ernährungsbedürfnisse", dietPlaceholder:"Bitte gib auch an, wenn jemand ein spezielles Menü benötigt",
+   songsLabel:"3 Lieder, die du auf der Hochzeit hören möchtest", songsPlaceholder:"Nenne bis zu 3 Lieder und wenn möglich die Interpreten", hint:"Freiwillig · Wir möchten deine Lieblingslieder kennenlernen!",
+   messageLabel:"Nachricht an das Brautpaar", optional:"(Freiwillig)", messagePlaceholder:"Hinterlasse dem Brautpaar eine Nachricht...",
+   submit:"Antwort senden", sending:"Wird gesendet…", successTitle:"Vielen Dank!",
+   successText:"Deine Antwort wurde erfolgreich gespeichert. Vielen Dank!",
+   successDemo:"Deine Antwort wurde in dieser Demo vorbereitet. In der veröffentlichten Version werden die Antworten gespeichert, damit wir alles organisieren können.",
+   footer:"Wir freuen uns darauf, mit dir zu feiern",
+   errorOffline:"Das Formular ist noch nicht verbunden. Bitte versuche es später erneut oder kontaktiere das Brautpaar.",
+   errorSave:"Deine Antwort konnte nicht gespeichert werden. Bitte überprüfe deine Verbindung und versuche es erneut.",
+   responseSuccess:{
+    "Hacer check in para el vuelo":"Wie schön, dass du dabei bist! Vielen Dank, dass du uns bei der Planung hilfst.",
+    "Dudoso":"Danke für deine Rückmeldung! Sobald du es weißt, kannst du deine Antwort hier aktualisieren.",
+    "No podré asistir":"Vielen Dank für deine Nachricht. Schade, dass du nicht dabei sein kannst. Wir hoffen, dich bald wiederzusehen."
+   }
+  }
+ };
+ const switcher = document.querySelector(".language-switcher");
+ let current = localStorage.getItem("wedding-language") || "es";
+ if (!translations[current]) current = "es";
+ const setText = (selector, value) => { const el=document.querySelector(selector); if(el) el.textContent=value; };
+ function applyLanguage(lang) {
+  current = translations[lang] ? lang : "es";
+  const t = translations[current];
+  document.documentElement.lang = current;
+  localStorage.setItem("wedding-language", current);
+  switcher.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.language===current)));
+  setText(".intro h2",t.introTitle); setText(".intro p",t.introText);
+  const details=document.querySelectorAll(".details .detail");
+  [[t.dateLabel,t.dateValue],[t.timeLabel,t.timeValue],[t.placeLabel,t.placeValue]].forEach((v,i)=>{if(details[i]){details[i].querySelector(".label").textContent=v[0];details[i].querySelector("strong").textContent=v[1];}});
+  setText(".ticket-main>.ticket-form-label:first-child",current==="es"?"Hacer check in para el vuelo":current==="en"?"Check in for your flight":"Für den Flug einchecken");
+  setText('label[for="name"]',t.nameLabel);
+  const name=document.getElementById("name"); if(name) name.placeholder=t.namePlaceholder;
+  setText(".group-label",t.response);
+  document.querySelectorAll(".choice").forEach((el,i)=>{const input=el.querySelector("input");el.lastChild.textContent=" "+t.attendance[i];});
+  setText(".additional-label",t.additional);
+  setText('label[for="diet"]',t.dietLabel); const diet=document.getElementById("diet");if(diet)diet.placeholder=t.dietPlaceholder;
+  setText('label[for="songs"]',t.songsLabel); const songs=document.getElementById("songs");if(songs)songs.placeholder=t.songsPlaceholder;
+  setText(".field .hint",t.hint);
+  const messageLabel=document.querySelector('label[for="message"]');if(messageLabel){messageLabel.firstChild.textContent=t.messageLabel+" ";const optional=messageLabel.querySelector(".hint");if(optional)optional.textContent=t.optional;}
+  const message=document.getElementById("message");if(message)message.placeholder=t.messagePlaceholder;
+  const submit=document.querySelector(".submit");if(submit&&!submit.disabled)submit.textContent=t.submit;
+  setText(".success h3",t.successTitle);
+  const success=document.querySelector(".success p");if(success){const existing=success.dataset.responseKey;if(existing)success.textContent=t.responseSuccess[existing]||t.successText;else success.textContent=t.successDemo;}
+  setText("main>div:last-child",t.footer);
+  const error=document.getElementById("submitError");if(error&&error.dataset.errorKey)error.textContent=t[error.dataset.errorKey];
+  const heroImage=document.querySelector(".runway-scene img");if(heroImage)heroImage.alt=t.heroAlt;
+ }
+ switcher.addEventListener("click",e=>{const b=e.target.closest("button[data-language]");if(b)applyLanguage(b.dataset.language);});
+ const observer=new MutationObserver(()=>{const success=document.querySelector(".success p");if(success&&document.querySelector(".success").style.display==="block"){const data=new FormData(document.getElementById("rsvp"));const key=data.get("attendance");success.dataset.responseKey=key||"";success.textContent=translations[current].responseSuccess[key]||translations[current].successText;}});
+ const successNode=document.querySelector(".success");if(successNode)observer.observe(successNode,{attributes:true,attributeFilter:["style"]});
+ const form=document.getElementById("rsvp");if(form){const error=document.getElementById("submitError");if(error){new MutationObserver(()=>{const value=error.textContent;if(value.includes("todavía no está conectado"))error.dataset.errorKey="errorOffline";else if(value.includes("No hemos podido guardar"))error.dataset.errorKey="errorSave";if(error.dataset.errorKey)error.textContent=translations[current][error.dataset.errorKey];}).observe(error,{childList:true,characterData:true,subtree:true});}}
+ applyLanguage(current);
+})();
+</script>
+
 </body></html>
