@@ -554,9 +554,9 @@ main:before{display:none}
 <img class="stamp-art stamp-flight" src="images/stamp-flight.png" alt="">
 <img class="stamp-art stamp-globe" src="images/stamp-globe.png" alt="">
 </div><form id="rsvp"><div class="ticket-main">
-<div class="ticket-form-label">Hacer check in para el vuelo</div>
+<div class="ticket-form-label">Confirma tu asistencia</div>
 <div class="field"><label for="name">Nombre y apellidos</label><input id="name" name="name" required placeholder="Tu nombre completo"></div>
-<div class="field"><span class="group-label">Tu respuesta:</span><div class="choices"><label class="choice"><input type="radio" name="attendance" value="Hacer check in para el vuelo" required> Confirmar check in</label><label class="choice"><input type="radio" name="attendance" value="Dudoso"> Tengo dudas para facturar</label><label class="choice"><input type="radio" name="attendance" value="No podré asistir"> Vuelo cancelado, no asistiré</label></div></div>
+<div class="field"><span class="group-label">Tu respuesta:</span><div class="choices"><label class="choice"><input type="radio" name="attendance" value="Hacer check in para el vuelo" required> Confirmar asistencia</label><label class="choice"><input type="radio" name="attendance" value="Dudoso"> Todavía no lo sé</label><label class="choice"><input type="radio" name="attendance" value="No podré asistir"> No podré asistir</label></div></div>
 <div class="ticket-form-label additional-label">Información adicional / Passenger notes</div>
 <div class="conditional" id="attendingFields">
 <div class="field"><label for="diet">Alergias, intolerancias o necesidades alimentarias</label><textarea id="diet" name="diet" rows="3" placeholder="Indica también si alguien necesita un menú especial"></textarea></div>
@@ -621,8 +621,8 @@ form.addEventListener('submit',async e=>{
    introText:"Nos haría muchísima ilusión compartir contigo un día tan especial. Queremos que nos acompañes y, para ayudarnos a organizarlo todo, te agradeceríamos que rellenaras este pequeño formulario.",
    dateLabel:"Fecha", dateValue:"Domingo, 03 de octubre de 2027", timeLabel:"Hora", timeValue:"12:00 h", placeLabel:"Lugar", placeValue:"Finca Paloverde Ágape, Alhaurín de la Torre",
    nameLabel:"Nombre y apellidos", namePlaceholder:"Tu nombre completo", response:"Tu respuesta:",
-   attendance:["Confirmar check in","Tengo dudas para facturar","Vuelo cancelado, no asistiré"],
-   additional:"Información adicional / Passenger notes", dietLabel:"Alergias, intolerancias o necesidades alimentarias", dietPlaceholder:"Indica también si alguien necesita un menú especial",
+   attendance:["Confirmar asistencia","Todavía no lo sé","No podré asistir"],
+   additional:"Información adicional", dietLabel:"Alergias, intolerancias o necesidades alimentarias", dietPlaceholder:"Indica también si alguien necesita un menú especial",
    songsLabel:"3 canciones que te gustaría escuchar en la boda", songsPlaceholder:"Escribe hasta 3 canciones y, si puedes, sus artistas", hint:"Opcional · ¡Queremos conocer tus favoritas!",
    messageLabel:"Mensaje para los novios", optional:"(Opcional)", messagePlaceholder:"Déjanos un mensaje para los novios...",
    submit:"Enviar respuesta", sending:"Enviando…", successTitle:"¡Muchas gracias!",
@@ -644,7 +644,7 @@ form.addEventListener('submit',async e=>{
    dateLabel:"Date", dateValue:"Sunday, 3 October 2027", timeLabel:"Time", timeValue:"12:00 pm", placeLabel:"Venue", placeValue:"Finca Paloverde Ágape, Alhaurín de la Torre",
    nameLabel:"Full name", namePlaceholder:"Your full name", response:"Your response:",
    attendance:["Confirm check-in","I'm not sure yet","Flight cancelled, I can't attend"],
-   additional:"Additional information / Passenger notes", dietLabel:"Allergies, intolerances or dietary requirements", dietPlaceholder:"Please also let us know if anyone needs a special meal",
+   additional:"Additional information", dietLabel:"Allergies, intolerances or dietary requirements", dietPlaceholder:"Please also let us know if anyone needs a special meal",
    songsLabel:"3 songs you'd like to hear at the wedding", songsPlaceholder:"Enter up to 3 songs and, if possible, the artists", hint:"Optional · We'd love to know your favourites!",
    messageLabel:"Message for the couple", optional:"(Optional)", messagePlaceholder:"Leave a message for the couple...",
    submit:"Send response", sending:"Sending…", successTitle:"Thank you!",
@@ -666,7 +666,7 @@ form.addEventListener('submit',async e=>{
    dateLabel:"Datum", dateValue:"Sonntag, 3. Oktober 2027", timeLabel:"Uhrzeit", timeValue:"12:00 Uhr", placeLabel:"Ort", placeValue:"Finca Paloverde Ágape, Alhaurín de la Torre",
    nameLabel:"Vor- und Nachname", namePlaceholder:"Dein vollständiger Name", response:"Deine Antwort:",
    attendance:["Check-in bestätigen","Ich bin mir noch nicht sicher","Flug storniert, ich kann nicht teilnehmen"],
-   additional:"Zusätzliche Informationen / Passenger notes", dietLabel:"Allergien, Unverträglichkeiten oder besondere Ernährungsbedürfnisse", dietPlaceholder:"Bitte gib auch an, wenn jemand ein spezielles Menü benötigt",
+   additional:"Zusätzliche Informationen", dietLabel:"Allergien, Unverträglichkeiten oder besondere Ernährungsbedürfnisse", dietPlaceholder:"Bitte gib auch an, wenn jemand ein spezielles Menü benötigt",
    songsLabel:"3 Lieder, die du auf der Hochzeit hören möchtest", songsPlaceholder:"Nenne bis zu 3 Lieder und wenn möglich die Interpreten", hint:"Freiwillig · Wir möchten deine Lieblingslieder kennenlernen!",
    messageLabel:"Nachricht an das Brautpaar", optional:"(Freiwillig)", messagePlaceholder:"Hinterlasse dem Brautpaar eine Nachricht...",
    submit:"Antwort senden", sending:"Wird gesendet…", successTitle:"Vielen Dank!",
@@ -695,7 +695,7 @@ form.addEventListener('submit',async e=>{
   setText(".intro h2",t.introTitle); setText(".intro p",t.introText);
   const details=document.querySelectorAll(".details .detail");
   [[t.dateLabel,t.dateValue],[t.timeLabel,t.timeValue],[t.placeLabel,t.placeValue]].forEach((v,i)=>{if(details[i]){details[i].querySelector(".label").textContent=v[0];details[i].querySelector("strong").textContent=v[1];}});
-  setText(".ticket-main>.ticket-form-label:first-child",current==="es"?"Hacer check in para el vuelo":current==="en"?"Check in for your flight":"Für den Flug einchecken");
+  setText(".ticket-main>.ticket-form-label:first-child",current==="es"?"Confirma tu asistencia":current==="en"?"Check in for your flight":"Für den Flug einchecken");
   setText('label[for="name"]',t.nameLabel);
   const name=document.getElementById("name"); if(name) name.placeholder=t.namePlaceholder;
   setText(".group-label",t.response);
