@@ -548,6 +548,7 @@ main:before{display:none}
 <div class="ticket-form-label additional-label">Información adicional / Passenger notes</div>
 <div class="conditional" id="attendingFields">
 <div class="field"><label for="diet">Alergias, intolerancias o necesidades alimentarias</label><textarea id="diet" name="diet" rows="3" placeholder="Indica también si alguien necesita un menú especial"></textarea></div>
+<div class="field"><label for="songs">3 canciones que te gustaría escuchar en la boda</label><textarea id="songs" name="songs" rows="3" placeholder="Escribe hasta 3 canciones y, si puedes, sus artistas"></textarea><span class="hint">Opcional · ¡Queremos conocer tus favoritas!</span></div>
 
 </div>
 <div class="field"><label for="message">Mensaje para los novios <span class="hint">(Opcional)</span></label><textarea id="message" name="message" rows="3" placeholder="Déjanos un mensaje para los novios..."></textarea></div>
@@ -576,7 +577,7 @@ form.addEventListener('submit',async e=>{
  const data=Object.fromEntries(new FormData(form).entries());
  submitButton.disabled=true;submitButton.textContent='Enviando…';errorBox.textContent='';
  try{
-  const {error}=await supabaseClient.from('rsvps').insert({name:data.name.trim(),attendance:data.attendance,diet:data.diet||'',message:data.message||''});
+  const {error}=await supabaseClient.from('rsvps').insert({name:data.name.trim(),attendance:data.attendance,diet:data.diet||'',songs:data.songs||'',message:data.message||''});
   if(error)throw error;
   form.style.display='none';
   const s=document.getElementById('success');s.style.display='block';
