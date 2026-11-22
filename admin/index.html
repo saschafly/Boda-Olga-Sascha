@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Administración · Olga & Sascha</title>
+<style>
+:root{font-family:Inter,Arial,sans-serif;color:#20364b;background:#eef3f7}*{box-sizing:border-box}body{margin:0}.shell{max-width:1440px;margin:auto;padding:32px 24px 60px}.top{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}.eyebrow{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#63809a}.top h1{font:400 clamp(30px,5vw,46px) Georgia,serif;margin:8px 0}.muted{color:#6b8091}.actions{display:flex;gap:10px;flex-wrap:wrap}button{border:0;border-radius:9px;padding:11px 16px;background:#204e73;color:white;cursor:pointer;font-weight:600}button.secondary{background:#dce6ee;color:#25445d}button:disabled{opacity:.55;cursor:wait}.login{max-width:430px;margin:12vh auto;background:white;padding:30px;border-radius:18px;box-shadow:0 12px 40px #183c5918}.login h2{font:400 28px Georgia;margin:0 0 8px}.field{display:grid;gap:7px;margin:18px 0}.field label{font-size:13px;color:#526b80}.field input{padding:13px;border:1px solid #cbd8e2;border-radius:8px;font-size:15px}.error{color:#a32e2e;font-size:13px;min-height:18px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}.stat{background:white;border-radius:14px;padding:18px 20px;border:1px solid #dce5ec}.stat span{font-size:12px;color:#62798d}.stat strong{display:block;font-size:32px;margin-top:8px}.toolbar{display:flex;gap:12px;align-items:center;margin:22px 0}.toolbar input{width:min(420px,100%);padding:12px 14px;border:1px solid #cbd8e2;border-radius:9px;font-size:14px}.columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}.column{background:#e2eaf0;border-radius:15px;padding:13px;min-height:260px}.column h2{font-size:15px;margin:5px 5px 13px;display:flex;justify-content:space-between}.count{background:white;border-radius:20px;padding:3px 9px;font-size:12px}.guest{background:white;border:1px solid #dbe4eb;border-radius:12px;padding:15px;margin-bottom:10px;overflow-wrap:anywhere}.guest h3{font-size:16px;margin:0 0 8px}.guest p{font-size:13px;line-height:1.5;margin:7px 0;color:#536b7e;white-space:pre-wrap}.guest time{font-size:11px;color:#8798a5}.empty{padding:30px 10px;text-align:center;color:#8193a1;font-size:13px}.status{margin:14px 0;color:#62798d;font-size:13px}@media(max-width:850px){.columns{grid-template-columns:1fr}.stats{grid-template-columns:1fr}.shell{padding:22px 14px}.toolbar{align-items:stretch;flex-direction:column}}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
+</head>
+<body>
+<div id="loginView" class="login" hidden>
+  <div class="eyebrow">Olga & Sascha · 03.10.2027</div><h2>Panel de invitados</h2><p class="muted">Acceso privado para los novios.</p>
+  <form id="loginForm"><div class="field"><label for="email">Correo electrónico</label><input id="email" type="email" autocomplete="username" required></div><div class="field"><label for="password">Contraseña</label><input id="password" type="password" autocomplete="current-password" required></div><button id="loginButton" type="submit">Entrar</button><p id="loginError" class="error" role="alert"></p></form>
+</div>
+<div id="dashboard" class="shell" hidden>
+  <header class="top"><div><div class="eyebrow">Olga & Sascha · Gestión privada</div><h1>Guest Manager</h1><div class="muted">Respuestas de los invitados, clasificadas automáticamente.</div></div><div class="actions"><button class="secondary" id="refresh">Actualizar</button><button id="export">Exportar CSV</button><button class="secondary" id="logout">Cerrar sesión</button></div></header>
+  <div class="stats"><div class="stat"><span>Confirman</span><strong id="yesCount">0</strong></div><div class="stat"><span>Tienen dudas</span><strong id="maybeCount">0</strong></div><div class="stat"><span>No asisten</span><strong id="noCount">0</strong></div></div>
+  <div class="toolbar"><input id="search" type="search" placeholder="Buscar por nombre o texto…"><div class="muted" id="total"></div></div>
+  <div id="status" class="status" aria-live="polite"></div>
+  <div class="columns">
+    <section class="column"><h2>Confirman <span class="count" id="yesPill">0</span></h2><div id="yesList"></div></section>
+    <section class="column"><h2>Tienen dudas <span class="count" id="maybePill">0</span></h2><div id="maybeList"></div></section>
+    <section class="column"><h2>No asisten <span class="count" id="noPill">0</span></h2><div id="noList"></div></section>
+  </div>
+</div>
+<script>
+(() => {
+ const cfg=window.SUPABASE_CONFIG;
+ const loginView=document.getElementById('loginView'),dashboard=document.getElementById('dashboard');
+ const statusEl=document.getElementById('status'); let client=null, rows=[];
+ const labels={'Hacer check in para el vuelo':'Confirma','Dudoso':'Tiene dudas','No podré asistir':'No asiste'};
+ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ function showLogin(){loginView.hidden=false;dashboard.hidden=true}
+ function showDashboard(){loginView.hidden=true;dashboard.hidden=false}
+ function card(r){return '<article class="guest"><h3>'+esc(r.name)+'</h3><p><b>Respuesta:</b> '+esc(labels[r.attendance]||r.attendance)+'</p>'+(r.diet?'<p><b>Alergias / alimentación:</b><br>'+esc(r.diet)+'</p>':'')+(r.message?'<p><b>Notas:</b><br>'+esc(r.message)+'</p>':'')+'<time>Recibida: '+new Date(r.created_at).toLocaleString('es-ES')+'</time></article>'}
+ function render(){
+  const q=document.getElementById('search').value.trim().toLocaleLowerCase('es');
+  const groups=[['Hacer check in para el vuelo','yes'],['Dudoso','maybe'],['No podré asistir','no']];
+  for(const [value,key] of groups){const subset=rows.filter(r=>r.attendance===value);const filtered=subset.filter(r=>[r.name,r.diet,r.message].join(' ').toLocaleLowerCase('es').includes(q));document.getElementById(key+'Count').textContent=subset.length;document.getElementById(key+'Pill').textContent=subset.length;document.getElementById(key+'List').innerHTML=filtered.length?filtered.map(card).join(''):'<div class="empty">No hay respuestas'+(q?' que coincidan':'')+'.</div>'}
+  document.getElementById('total').textContent=rows.length+' respuestas en total';
+ }
+ async function load(){
+  statusEl.textContent='Cargando respuestas…';
+  const {data,error}=await client.from('rsvps').select('id,name,attendance,diet,message,created_at').order('created_at',{ascending:false});
+  if(error){statusEl.textContent='No se pudieron cargar las respuestas: '+error.message;return}
+  rows=data||[];render();statusEl.textContent='Última actualización: '+new Date().toLocaleTimeString('es-ES');
+ }
+ if(!cfg?.url||!cfg?.anonKey||!window.supabase){loginView.hidden=false;loginView.innerHTML='<h2>Configuración pendiente</h2><p>Falta configurar Supabase. Sigue las instrucciones del archivo SETUP-SUPABASE.md del repositorio.</p>';return}
+ client=window.supabase.createClient(cfg.url,cfg.anonKey);
+ document.getElementById('loginForm').addEventListener('submit',async e=>{e.preventDefault();const b=document.getElementById('loginButton');b.disabled=true;document.getElementById('loginError').textContent='';const {error}=await client.auth.signInWithPassword({email:document.getElementById('email').value,password:document.getElementById('password').value});b.disabled=false;if(error){document.getElementById('loginError').textContent='No se ha podido iniciar sesión. Comprueba los datos y que tu usuario esté autorizado.';return}await checkSession()});
+ async function checkSession(){const {data}=await client.auth.getSession();if(!data.session){showLogin();return}showDashboard();await load()}
+ document.getElementById('refresh').onclick=load;document.getElementById('search').addEventListener('input',render);
+ document.getElementById('logout').onclick=async()=>{await client.auth.signOut();showLogin()};
+ document.getElementById('export').onclick=()=>{const cols=['name','attendance','diet','message','created_at'];const csv=[cols.join(','),...rows.map(r=>cols.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(','))].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='invitados-boda-olga-sascha.csv';a.click();URL.revokeObjectURL(a.href)};
+ client.auth.onAuthStateChange((_event,session)=>{if(!session)showLogin()});
+ checkSession();
+})();
+</script>
+</body></html>
