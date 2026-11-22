@@ -7,6 +7,7 @@ create table if not exists public.rsvps (
   name text not null check (char_length(trim(name)) between 2 and 160),
   attendance text not null check (attendance in ('Hacer check in para el vuelo','Dudoso','No podré asistir')),
   diet text not null default '',
+  songs text not null default '',
   message text not null default '',
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
@@ -28,6 +29,7 @@ with check (
   char_length(trim(name)) between 2 and 160
   and attendance in ('Hacer check in para el vuelo','Dudoso','No podré asistir')
   and char_length(diet) <= 3000
+  and char_length(songs) <= 3000
   and char_length(message) <= 3000
 );
 
