@@ -34,16 +34,16 @@
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  function showLogin(){loginView.hidden=false;dashboard.hidden=true}
  function showDashboard(){loginView.hidden=true;dashboard.hidden=false}
- function card(r){return '<article class="guest"><h3>'+esc(r.name)+'</h3><p><b>Respuesta:</b> '+esc(labels[r.attendance]||r.attendance)+'</p>'+(r.diet?'<p><b>Alergias / alimentación:</b><br>'+esc(r.diet)+'</p>':'')+(r.message?'<p><b>Notas:</b><br>'+esc(r.message)+'</p>':'')+'<time>Recibida: '+new Date(r.created_at).toLocaleString('es-ES')+'</time></article>'}
+ function card(r){return '<article class="guest"><h3>'+esc(r.name)+'</h3><p><b>Respuesta:</b> '+esc(labels[r.attendance]||r.attendance)+'</p>'+(r.diet?'<p><b>Alergias / alimentación:</b><br>'+esc(r.diet)+'</p>':'')+(r.songs?'<p><b>Canciones que quiere escuchar:</b><br>'+esc(r.songs)+'</p>':'')+(r.message?'<p><b>Notas:</b><br>'+esc(r.message)+'</p>':'')+'<time>Recibida: '+new Date(r.created_at).toLocaleString('es-ES')+'</time></article>'}
  function render(){
   const q=document.getElementById('search').value.trim().toLocaleLowerCase('es');
   const groups=[['Hacer check in para el vuelo','yes'],['Dudoso','maybe'],['No podré asistir','no']];
-  for(const [value,key] of groups){const subset=rows.filter(r=>r.attendance===value);const filtered=subset.filter(r=>[r.name,r.diet,r.message].join(' ').toLocaleLowerCase('es').includes(q));document.getElementById(key+'Count').textContent=subset.length;document.getElementById(key+'Pill').textContent=subset.length;document.getElementById(key+'List').innerHTML=filtered.length?filtered.map(card).join(''):'<div class="empty">No hay respuestas'+(q?' que coincidan':'')+'.</div>'}
+  for(const [value,key] of groups){const subset=rows.filter(r=>r.attendance===value);const filtered=subset.filter(r=>[r.name,r.diet,r.songs,r.message].join(' ').toLocaleLowerCase('es').includes(q));document.getElementById(key+'Count').textContent=subset.length;document.getElementById(key+'Pill').textContent=subset.length;document.getElementById(key+'List').innerHTML=filtered.length?filtered.map(card).join(''):'<div class="empty">No hay respuestas'+(q?' que coincidan':'')+'.</div>'}
   document.getElementById('total').textContent=rows.length+' respuestas en total';
  }
  async function load(){
   statusEl.textContent='Cargando respuestas…';
-  const {data,error}=await client.from('rsvps').select('id,name,attendance,diet,message,created_at').order('created_at',{ascending:false});
+  const {data,error}=await client.from('rsvps').select('id,name,attendance,diet,songs,message,created_at').order('created_at',{ascending:false});
   if(error){statusEl.textContent='No se pudieron cargar las respuestas: '+error.message;return}
   rows=data||[];render();statusEl.textContent='Última actualización: '+new Date().toLocaleTimeString('es-ES');
  }
@@ -53,7 +53,7 @@
  async function checkSession(){const {data}=await client.auth.getSession();if(!data.session){showLogin();return}showDashboard();await load()}
  document.getElementById('refresh').onclick=load;document.getElementById('search').addEventListener('input',render);
  document.getElementById('logout').onclick=async()=>{await client.auth.signOut();showLogin()};
- document.getElementById('export').onclick=()=>{const cols=['name','attendance','diet','message','created_at'];const csv=[cols.join(','),...rows.map(r=>cols.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(','))].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='invitados-boda-olga-sascha.csv';a.click();URL.revokeObjectURL(a.href)};
+ document.getElementById('export').onclick=()=>{const cols=['name','attendance','diet','songs','message','created_at'];const csv=[cols.join(','),...rows.map(r=>cols.map(k=>'"'+String(r[k]??'').replace(/"/g,'""')+'"').join(','))].join('\r\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8'}));a.download='invitados-boda-olga-sascha.csv';a.click();URL.revokeObjectURL(a.href)};
  client.auth.onAuthStateChange((_event,session)=>{if(!session)showLogin()});
  checkSession();
 })();
