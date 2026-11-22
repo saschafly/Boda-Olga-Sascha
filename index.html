@@ -562,7 +562,7 @@ const radios=document.querySelectorAll('input[name="attendance"]');
 const conditional=document.getElementById('attendingFields');
 const form=document.getElementById('rsvp');
 const submitButton=form.querySelector('button[type="submit"]');
-radios.forEach(r=>r.addEventListener('change',()=>{const yes=document.querySelector('input[name="attendance"]:checked')?.value==='Hacer check in para el vuelo';conditional.classList.toggle('show',yes);}));
+radios.forEach(r=>r.addEventListener('change',()=>{const answer=document.querySelector('input[name="attendance"]:checked')?.value;const showDetails=answer==='Hacer check in para el vuelo'||answer==='Dudoso';conditional.classList.toggle('show',showDetails);}));
 const config=window.SUPABASE_CONFIG;
 const supabaseReady=!!(window.supabase&&config?.url&&config?.anonKey&&!config.url.includes('YOUR-PROJECT')&&!config.anonKey.includes('YOUR_SUPABASE'));
 const supabaseClient=supabaseReady?window.supabase.createClient(config.url,config.anonKey):null;
