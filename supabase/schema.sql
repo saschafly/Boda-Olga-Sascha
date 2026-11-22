@@ -55,6 +55,8 @@ on public.rsvp_admins for select to authenticated
 using (user_id = auth.uid());
 
 grant usage on schema public to anon, authenticated;
+revoke all on table public.rsvps from anon, authenticated;
+revoke all on table public.rsvp_admins from anon, authenticated;
 grant insert on public.rsvps to anon, authenticated;
 grant select, update, delete on public.rsvps to authenticated;
 grant select on public.rsvp_admins to authenticated;
