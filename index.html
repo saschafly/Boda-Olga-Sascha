@@ -554,10 +554,39 @@ main:before{display:none}
 <button class="submit" type="submit">Enviar respuesta</button>
 </div></form><div class="success" id="success" role="status"><h3>¡Muchas gracias!</h3><p>Tu respuesta se ha preparado correctamente en esta demostración.<br>En la versión publicada, las respuestas quedarán guardadas para que podamos organizarnos.</p></div></section><div class="names">Olga & Sascha</div><div>Estamos deseando celebrarlo contigo</div></footer>
 </main></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script>
 <script>
 const radios=document.querySelectorAll('input[name="attendance"]');
 const conditional=document.getElementById('attendingFields');
+const form=document.getElementById('rsvp');
+const submitButton=form.querySelector('button[type="submit"]');
 radios.forEach(r=>r.addEventListener('change',()=>{const yes=document.querySelector('input[name="attendance"]:checked')?.value==='Hacer check in para el vuelo';conditional.classList.toggle('show',yes);}));
-document.getElementById('rsvp').addEventListener('submit',e=>{e.preventDefault();if(!e.target.reportValidity())return;const data=Object.fromEntries(new FormData(e.target).entries());e.target.style.display='none';const s=document.getElementById('success');s.style.display='block';const messages={'Hacer check in para el vuelo':'¡Qué alegría saber que nos acompañarás! Gracias por ayudarnos con la organización.','Dudoso':'¡Gracias por avisarnos! Cuando lo tengas claro, puedes volver a actualizar tu respuesta.','No podré asistir':'Muchas gracias por avisarnos. Sentimos que no puedas acompañarnos y esperamos verte pronto.'};s.querySelector('p').textContent=messages[data.attendance];});
+const config=window.SUPABASE_CONFIG;
+const supabaseReady=!!(window.supabase&&config?.url&&config?.anonKey&&!config.url.includes('YOUR-PROJECT')&&!config.anonKey.includes('YOUR_SUPABASE'));
+const supabaseClient=supabaseReady?window.supabase.createClient(config.url,config.anonKey):null;
+const errorBox=document.createElement('p');
+errorBox.id='submitError';errorBox.setAttribute('role','alert');
+errorBox.style.cssText='color:#9b2929;font:14px Arial,sans-serif;line-height:1.5;text-align:center;margin:8px 0 0';
+form.querySelector('.ticket-main').appendChild(errorBox);
+form.addEventListener('submit',async e=>{
+ e.preventDefault();
+ if(!form.reportValidity())return;
+ if(!supabaseClient){errorBox.textContent='El formulario todavía no está conectado. Inténtalo más tarde o contacta con los novios.';return;}
+ const data=Object.fromEntries(new FormData(form).entries());
+ submitButton.disabled=true;submitButton.textContent='Enviando…';errorBox.textContent='';
+ try{
+  const {error}=await supabaseClient.from('rsvps').insert({name:data.name.trim(),attendance:data.attendance,diet:data.diet||'',message:data.message||''});
+  if(error)throw error;
+  form.style.display='none';
+  const s=document.getElementById('success');s.style.display='block';
+  const messages={'Hacer check in para el vuelo':'¡Qué alegría saber que nos acompañarás! Gracias por ayudarnos con la organización.','Dudoso':'¡Gracias por avisarnos! Cuando lo tengas claro, puedes volver a actualizar tu respuesta.','No podré asistir':'Muchas gracias por avisarnos. Sentimos que no puedas acompañarnos y esperamos verte pronto.'};
+  s.querySelector('p').textContent=messages[data.attendance]||'Tu respuesta se ha guardado correctamente. ¡Muchas gracias!';
+ }catch(err){
+  console.error('RSVP submission failed:',err);
+  errorBox.textContent='No hemos podido guardar tu respuesta. Comprueba tu conexión e inténtalo de nuevo.';
+  submitButton.disabled=false;submitButton.textContent='Enviar respuesta';
+ }
+});
 </script>
 </body></html>
