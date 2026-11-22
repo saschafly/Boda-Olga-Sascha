@@ -31,3 +31,4 @@ El código del formulario y del panel está preparado para Supabase. Para que fu
 
 ## Protección de datos
 La web usa la clave pública de Supabase, protegida por Row Level Security. Los visitantes solo tienen permiso de INSERT; no tienen SELECT. Las cuentas autorizadas se registran en `rsvp_admins` y las políticas de base de datos bloquean cualquier lectura por parte de invitados. No añadas nunca la clave service_role al HTML, JavaScript ni al repositorio.
+\n## Estado actual\nEl repositorio ya contiene el formulario conectado, el panel `/admin/` y las políticas de base de datos. El servicio aún no recibirá respuestas hasta que se cree el proyecto Supabase, se ejecute el SQL, se configure `supabase-config.js` y se autoricen las cuentas de los dos administradores.\n
